@@ -1,1 +1,118 @@
-<h1>MS Word Plug-in User Guide</h1><div><h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Overview">Overview</h2><p>Sugar Plug-in for Microsoft Word enables you to merge data such as names and addresses from Sugar Ultimate, Sugar Enterprise, Sugar Corporate, and Sugar Professional with form letter templates created in MS Word.</p><p>This document describes how use the Sugar Plug-in for Microsoft Word to merge data from Sugar with MS Word templates in Sugar Ultimate, Sugar Enterprise, Sugar Corporate, and Sugar Professional.</p><p>For installation instructions, please refer to the <a href="http://support.sugarcrm.com/Documentation/Plug-ins/MS_Word_Plug-in/MS_Word_Plug-in_Installation_Guide">Word Plug-in Installation Guide</a>. For a complete list of platform requirements and supported environments, please refer to the <a href="http://support.sugarcrm.com/Resources/Supported_Platforms/Plug-ins_Supported_Platforms">Plug-ins Supported Platforms</a> page.</p><p><strong>Note</strong>: If SAML authentication is enabled in the Sugar application, Sugar Plug-in for MS Word cannot connect to Sugar.</p><h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Functionality">Functionality</h2><p>You can perform the following actions using Sugar Plug-in for Microsoft Word:</p><ul><li>Mail merge from Sugar using an MS Word template <br /> or</li><li>Mail merge from MS Word using Sugar data</li><li>Include an unlimited number of records such as accounts, contacts, and opportunities within a single merge operation</li><li>Save the merged documents as Sugar documents</li></ul><p>Mail Merge functionality is available for the following modules:</p><ul><li>Accounts</li><li>Opportunities</li><li>Leads</li><li>Contacts</li><li>Cases</li><li>Campaigns</li></ul><p><strong>Note</strong>: Mail merge cannot be performed directly in the Sugar application for Sugar versions 7.x and above.</p><h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_User_Roles">User Roles</h2><p>To be able to use the plug-in, users are required to have the ability to export records in Sugar. Any Sugar user with a role that prevents export as seen in Admin &gt; User Management &gt; {User's Name} &gt; Access will not be able to utilize the Sugar Plug-in for MS Word.</p><h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Mail_Merge_Templates">Mail Merge Templates</h2><p>You can create mail merge templates in MS Word and upload them into Sugar. Templates are stored in the <strong>Documents </strong>module. When you create a template, you have to specify the primary module from which you creating the template.</p><p><strong>Note</strong>: The mail merge functionality in the application is not supported in Sugar 7.</p><p>Depending on the primary module that you select, you can also select fields from a related module. For example, if you are creating a template from the Accounts module, you can select fields from Contacts or Opportunities. The table below lists the related modules, if any, for modules supported by the Sugar Plug-in for Microsoft Word.</p><table cellspacing="0" cellpadding="4" border="1"><tbody><tr><td><span><strong>Primary Module</strong></span></td><td><span><strong>Related Module</strong></span></td></tr><tr><td><span>Accounts</span></td><td><span>Contacts, Opportunities</span></td></tr><tr><td><span>Campaign Targets</span></td><td><span>None</span></td></tr><tr><td><span>Cases</span></td><td><span>Contacts</span></td></tr><tr><td><span>Leads</span></td><td><span>None</span></td></tr><tr><td><span>Opportunities</span></td><td><span>Contacts, Accounts</span></td></tr></tbody></table><br /><h3 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Creating_Mail_Merge_Templates">Creating Mail Merge Templates</h3><ol><li>From the SugarCRM drop-down menu in MS Word, select Define Template. <br /> This displays the Select Master Module dialog box. <br /> Existing record fields from the selected module display in the Add Fields dialog box.</li><li>Select the fields that you want to add to the template and click Add to Document. <br />Note: When using checkbox fields on a merge template, the values "1" and "0" will be shown where "1" indicates the record's box is checked and "0" indicates it is not. You may create a formula to convert the "1" and "0" to words of your choosing using <a href="http://office.microsoft.com/en-us/word-help/field-codes-if-field-HP010077969.aspx">these instructions</a>.</li><li>If related module fields are available to select, the Next button will display in the Add fields from dialog box. <br /> If no related module fields are available to select, the Finish button will display in the Add fields from dialog box.</li><li>If you click Next, you can select fields from a related module and click Add to Document. <br /> The selected fields from the related modules are added to the template.</li><li>Click Finish.</li><li>To move a field, highlight it and drag it to the new location; you can also enter other text in the template.</li><li>Select Upload Document from the SugarCRM menu. <br /> This displays the Upload Document to SugarCRM dialog box.</li><li>Enter a name and a revision number for the document and click OK. <br /> The Is Mail Merge Template checkbox is selected by default to ensure that it displays as a template in the Documents module. <br /> If the operation is successful, a message displays stating that the template was uploaded successfully.</li><li>Click OK. <br /> This displays the template in the List View of the Documents module.</li></ol><h3 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Updating_Mail_Merge_Templates">Updating Mail Merge Templates</h3><p>You can view and update mail merge templates from Sugar using the following steps:</p><ol><li>Select the template from the List View of the Documents module.</li><li>Select the document from the Document Revisions sub-panel in the Document's Detail View.</li><li>Select the template from the Document Revision page and open it in MS Word.</li><li>To update the document, make the necessary changes in MS Word, and upload the template to Sugar.</li></ol><h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Performing_a_Mail_Merge">Performing a Mail Merge</h2><p>You can perform a mail merge operation from Sugar or from Sugar Plug-in for Microsoft Word. <br /> To perform a mail merge in Sugar, define the template in MS Word, upload it into Sugar, select one or more records from the selected module, and merge them with the template.</p><p><strong>Note</strong>: Mail merge cannot be performed directly in the Sugar application for Sugar versions 7.x and above.</p><p>To perform a mail merge operation in MS Word, define the template in MS Word and then merge it with one or more records from the selected module.</p><p>When you upload a template from MS Word, it displays in the Document module as a mail merge template. The Shortcuts menu displays a Mail Merge option that allows you to access the Sugar Mail Merge wizard without navigating to the module's home page.</p><p><strong>Note</strong>: The Mail Merge option must be enabled on both the Administration page and the User Preferences page to display the Mail Merge option.</p><h3 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Performing_a_Mail_Merge_From_Sugar">Performing a Mail Merge From Sugar</h3><ol><li>In Sugar, navigate to the appropriate module's home page.</li><li>Select the record that you want to merge, and click Mail Merge. <br /> The Merge Records page displays the selected module.You can choose a different module from the Selected Module drop-down list</li><li>Select an available template from the Select Template drop-down list.</li><li>Click Next. <br /> The Refine List of Accounts to Merge page displays the selected records.</li><li>If you did not select any records, click Search to view existing records from the selected module in the Available list.</li><li>Use the left and right arrow to add or remove records. From the drop-down list below, you can choose another related record such as a contact or opportunity</li><li>Click Next. <br /> Associated records are display If you chose a related module. You can click Select to choose a different associated record. <br />Review and Complete page is displayed if you did not choose a related moduled.</li><li>Click Next. <br /> The Review and Complete page displays the selected module, records, and template.</li><li>Click Begin Merge to start merging the data with the template; to change a setting, click the Back button. <br /> This displays a dialog box requesting you to specify whether to open the merged document in MS Word, or save it to a disk.</li><li>Make your selection and click OK. <br /> If you choose to open it in MS Word, the merged document displays on the screen. You can save this document to your local machine or you can upload it into Sugar as a Sugar document. <br /> If you choose to save it to a disk, the document is saved to the Temp folder on your local machine. <br /> To begin a new mail merge operation, select Click Here to Continue.</li></ol><p><strong>Note</strong>: Mail merge cannot be performed directly in the Sugar application for Sugar versions 7.x and above.</p><h3 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Performing_a_Mail_Merge_From_MS_Word">Performing a Mail Merge From MS Word</h3><ol><li>Open the template in MS Word.</li><li>Select Begin Mail Merge from the Sugar menu. <br /> This displays a list of available records for the selected module in the Selection window.</li><li>Use the right arrow to move records that you want from the Available records list to the Selected Recipients list. <br /> A list of records for the selected module displays in the Selection window.</li><li>Use the right arrow to move the desired records to the Selected list.</li><li>Click Next. <br /> Depending on the module that you chose, related records display in the dialog box. <br /> For example, for the Accounts module, select an account from the Recipients list to view the related contacts in the Associated Contacts list. For Campaigns, choose the Campaign in the Select Campaign tab and then specify the Targets in the Select Targets tab.</li><li>Select a related record if needed.</li><li>Click Next. <br /> The Complete Mail Merge dialog box displays the selected records.</li><li>Click Complete Merge. <br /> This displays the merged document.</li><li>Select Upload from the SugarCRM menu to upload it to Sugar.</li><li>Enter a name for the document, and a revision number; to create notes, select the Create Note option.</li><li>Click OK. <br /> If the upload is successful, a message displays confirming it. <br /> The document displays as a Sugar record in the Documents module.</li></ol><div></div></div><div><p><small><b>Last Modified:</b> 09/26/2015 04:14pm</small></p></div>
+<h1>MS Word Plug-in User Guide</h1>
+<div>
+    <h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Overview">Overview</h2>
+    <p>Sugar Plug-in for Microsoft Word enables you to merge data such as names and addresses from Sugar Ultimate, Sugar Enterprise, Sugar Corporate, and Sugar Professional with form letter templates created in MS Word.</p>
+    <p>This document describes how use the Sugar Plug-in for Microsoft Word to merge data from Sugar with MS Word templates in Sugar Ultimate, Sugar Enterprise, Sugar Corporate, and Sugar Professional.</p>
+    <p>For installation instructions, please refer to the <a href="http://support.sugarcrm.com/Documentation/Plug-ins/MS_Word_Plug-in/MS_Word_Plug-in_Installation_Guide">Word Plug-in Installation Guide</a>. For a complete list of platform requirements and supported environments, please refer to the <a href="http://support.sugarcrm.com/Resources/Supported_Platforms/Plug-ins_Supported_Platforms">Plug-ins Supported Platforms</a> page.</p>
+    <p><strong>Note</strong>: If SAML authentication is enabled in the Sugar application, Sugar Plug-in for MS Word cannot connect to Sugar.</p>
+    <h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Functionality">Functionality</h2>
+    <p>You can perform the following actions using Sugar Plug-in for Microsoft Word:</p>
+    <ul>
+        <li>Mail merge from Sugar using an MS Word template <br /> or</li>
+        <li>Mail merge from MS Word using Sugar data</li>
+        <li>Include an unlimited number of records such as accounts, contacts, and opportunities within a single merge operation</li>
+        <li>Save the merged documents as Sugar documents</li>
+    </ul>
+    <p>Mail Merge functionality is available for the following modules:</p>
+    <ul>
+        <li>Accounts</li>
+        <li>Opportunities</li>
+        <li>Leads</li>
+        <li>Contacts</li>
+        <li>Cases</li>
+        <li>Campaigns</li>
+    </ul>
+    <p><strong>Note</strong>: Mail merge cannot be performed directly in the Sugar application for Sugar versions 7.x and above.</p>
+    <h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_User_Roles">User Roles</h2>
+    <p>To be able to use the plug-in, users are required to have the ability to export records in Sugar. Any Sugar user with a role that prevents export as seen in Admin &gt; User Management &gt; {User's Name} &gt; Access will not be able to utilize the Sugar Plug-in for MS Word.</p>
+    <h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Mail_Merge_Templates">Mail Merge Templates</h2>
+    <p>You can create mail merge templates in MS Word and upload them into Sugar. Templates are stored in the <strong>Documents </strong>module. When you create a template, you have to specify the primary module from which you creating the template.</p>
+    <p><strong>Note</strong>: The mail merge functionality in the application is not supported in Sugar 7.</p>
+    <p>Depending on the primary module that you select, you can also select fields from a related module. For example, if you are creating a template from the Accounts module, you can select fields from Contacts or Opportunities. The table below lists the related modules, if any, for modules supported by the Sugar Plug-in for Microsoft Word.</p>
+    <table cellspacing="0" cellpadding="4" border="1">
+        <tbody>
+            <tr>
+                <td><span><strong>Primary Module</strong></span></td>
+                <td><span><strong>Related Module</strong></span></td>
+            </tr>
+            <tr>
+                <td><span>Accounts</span></td>
+                <td><span>Contacts, Opportunities</span></td>
+            </tr>
+            <tr>
+                <td><span>Campaign Targets</span></td>
+                <td><span>None</span></td>
+            </tr>
+            <tr>
+                <td><span>Cases</span></td>
+                <td><span>Contacts</span></td>
+            </tr>
+            <tr>
+                <td><span>Leads</span></td>
+                <td><span>None</span></td>
+            </tr>
+            <tr>
+                <td><span>Opportunities</span></td>
+                <td><span>Contacts, Accounts</span></td>
+            </tr>
+        </tbody>
+    </table><br />
+    <h3 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Creating_Mail_Merge_Templates">Creating Mail Merge Templates</h3>
+    <ol>
+        <li>From the SugarCRM drop-down menu in MS Word, select Define Template. <br /> This displays the Select Master Module dialog box. <br /> Existing record fields from the selected module display in the Add Fields dialog box.</li>
+        <li>Select the fields that you want to add to the template and click Add to Document. <br />Note: When using checkbox fields on a merge template, the values "1" and "0" will be shown where "1" indicates the record's box is checked and "0" indicates it is not. You may create a formula to convert the "1" and "0" to words of your choosing using <a href="http://office.microsoft.com/en-us/word-help/field-codes-if-field-HP010077969.aspx">these instructions</a>.</li>
+        <li>If related module fields are available to select, the Next button will display in the Add fields from dialog box. <br /> If no related module fields are available to select, the Finish button will display in the Add fields from dialog box.</li>
+        <li>If you click Next, you can select fields from a related module and click Add to Document. <br /> The selected fields from the related modules are added to the template.</li>
+        <li>Click Finish.</li>
+        <li>To move a field, highlight it and drag it to the new location; you can also enter other text in the template.</li>
+        <li>Select Upload Document from the SugarCRM menu. <br /> This displays the Upload Document to SugarCRM dialog box.</li>
+        <li>Enter a name and a revision number for the document and click OK. <br /> The Is Mail Merge Template checkbox is selected by default to ensure that it displays as a template in the Documents module. <br /> If the operation is successful, a message displays stating that the template was uploaded successfully.</li>
+        <li>Click OK. <br /> This displays the template in the List View of the Documents module.</li>
+    </ol>
+    <h3 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Updating_Mail_Merge_Templates">Updating Mail Merge Templates</h3>
+    <p>You can view and update mail merge templates from Sugar using the following steps:</p>
+    <ol>
+        <li>Select the template from the List View of the Documents module.</li>
+        <li>Select the document from the Document Revisions sub-panel in the Document's Detail View.</li>
+        <li>Select the template from the Document Revision page and open it in MS Word.</li>
+        <li>To update the document, make the necessary changes in MS Word, and upload the template to Sugar.</li>
+    </ol>
+    <h2 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Performing_a_Mail_Merge">Performing a Mail Merge</h2>
+    <p>You can perform a mail merge operation from Sugar or from Sugar Plug-in for Microsoft Word. <br /> To perform a mail merge in Sugar, define the template in MS Word, upload it into Sugar, select one or more records from the selected module, and merge them with the template.</p>
+    <p><strong>Note</strong>: Mail merge cannot be performed directly in the Sugar application for Sugar versions 7.x and above.</p>
+    <p>To perform a mail merge operation in MS Word, define the template in MS Word and then merge it with one or more records from the selected module.</p>
+    <p>When you upload a template from MS Word, it displays in the Document module as a mail merge template. The Shortcuts menu displays a Mail Merge option that allows you to access the Sugar Mail Merge wizard without navigating to the module's home page.</p>
+    <p><strong>Note</strong>: The Mail Merge option must be enabled on both the Administration page and the User Preferences page to display the Mail Merge option.</p>
+    <h3 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Performing_a_Mail_Merge_From_Sugar">Performing a Mail Merge From Sugar</h3>
+    <ol>
+        <li>In Sugar, navigate to the appropriate module's home page.</li>
+        <li>Select the record that you want to merge, and click Mail Merge. <br /> The Merge Records page displays the selected module.You can choose a different module from the Selected Module drop-down list</li>
+        <li>Select an available template from the Select Template drop-down list.</li>
+        <li>Click Next. <br /> The Refine List of Accounts to Merge page displays the selected records.</li>
+        <li>If you did not select any records, click Search to view existing records from the selected module in the Available list.</li>
+        <li>Use the left and right arrow to add or remove records. From the drop-down list below, you can choose another related record such as a contact or opportunity</li>
+        <li>Click Next. <br /> Associated records are display If you chose a related module. You can click Select to choose a different associated record. <br />Review and Complete page is displayed if you did not choose a related moduled.</li>
+        <li>Click Next. <br /> The Review and Complete page displays the selected module, records, and template.</li>
+        <li>Click Begin Merge to start merging the data with the template; to change a setting, click the Back button. <br /> This displays a dialog box requesting you to specify whether to open the merged document in MS Word, or save it to a disk.</li>
+        <li>Make your selection and click OK. <br /> If you choose to open it in MS Word, the merged document displays on the screen. You can save this document to your local machine or you can upload it into Sugar as a Sugar document. <br /> If you choose to save it to a disk, the document is saved to the Temp folder on your local machine. <br /> To begin a new mail merge operation, select Click Here to Continue.</li>
+    </ol>
+    <p><strong>Note</strong>: Mail merge cannot be performed directly in the Sugar application for Sugar versions 7.x and above.</p>
+    <h3 id="b41bf-8445-f35f-3d2d-5606f9f9fd13_Performing_a_Mail_Merge_From_MS_Word">Performing a Mail Merge From MS Word</h3>
+    <ol>
+        <li>Open the template in MS Word.</li>
+        <li>Select Begin Mail Merge from the Sugar menu. <br /> This displays a list of available records for the selected module in the Selection window.</li>
+        <li>Use the right arrow to move records that you want from the Available records list to the Selected Recipients list. <br /> A list of records for the selected module displays in the Selection window.</li>
+        <li>Use the right arrow to move the desired records to the Selected list.</li>
+        <li>Click Next. <br /> Depending on the module that you chose, related records display in the dialog box. <br /> For example, for the Accounts module, select an account from the Recipients list to view the related contacts in the Associated Contacts list. For Campaigns, choose the Campaign in the Select Campaign tab and then specify the Targets in the Select Targets tab.</li>
+        <li>Select a related record if needed.</li>
+        <li>Click Next. <br /> The Complete Mail Merge dialog box displays the selected records.</li>
+        <li>Click Complete Merge. <br /> This displays the merged document.</li>
+        <li>Select Upload from the SugarCRM menu to upload it to Sugar.</li>
+        <li>Enter a name for the document, and a revision number; to create notes, select the Create Note option.</li>
+        <li>Click OK. <br /> If the upload is successful, a message displays confirming it. <br /> The document displays as a Sugar record in the Documents module.</li>
+    </ol>
+    <div></div>
+</div>
+<div>
+    <p><small><b>Last Modified:</b> 09/26/2015 04:14pm</small></p>
+</div>
