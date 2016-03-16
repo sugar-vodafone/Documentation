@@ -1,0 +1,20 @@
+"use strict";
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var DOMException = function DOMException(message, name) {
+  _classCallCheck(this, DOMException);
+
+  this.message = message;
+  this.name = name;
+  this.stack = new Error().stack;
+};
+
+
+DOMException.prototype = new Error();
+
+DOMException.prototype.toString = function () {
+  return this.name + ": " + this.message;
+};
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9kb20tZXhjZXB0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztJQUFxQixZQUFZLEdBQ3BCLFNBRFEsWUFBWSxDQUNuQixPQUFPLEVBQUUsSUFBSSxFQUFFO3dCQURSLFlBQVk7O0FBRTdCLE1BQUksQ0FBQyxPQUFPLEdBQUcsT0FBTyxDQUFBO0FBQ3RCLE1BQUksQ0FBQyxJQUFJLEdBQUcsSUFBSSxDQUFBO0FBQ2hCLE1BQUksQ0FBQyxLQUFLLEdBQUcsQUFBQyxJQUFJLEtBQUssRUFBRSxDQUFFLEtBQUssQ0FBQTtDQUNqQzs7cUJBTGtCLFlBQVk7O0FBUWpDLFlBQVksQ0FBQyxTQUFTLEdBQUcsSUFBSSxLQUFLLEVBQUUsQ0FBQTs7QUFFcEMsWUFBWSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEdBQUcsWUFBWTtBQUM1QyxTQUFVLElBQUksQ0FBQyxJQUFJLFVBQUssSUFBSSxDQUFDLE9BQU8sQ0FBRTtDQUN2QyxDQUFBIiwiZmlsZSI6ImRvbS1leGNlcHRpb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBjbGFzcyBET01FeGNlcHRpb24ge1xuICBjb25zdHJ1Y3RvcihtZXNzYWdlLCBuYW1lKSB7XG4gICAgdGhpcy5tZXNzYWdlID0gbWVzc2FnZVxuICAgIHRoaXMubmFtZSA9IG5hbWVcbiAgICB0aGlzLnN0YWNrID0gKG5ldyBFcnJvcigpKS5zdGFja1xuICB9XG59XG5cbkRPTUV4Y2VwdGlvbi5wcm90b3R5cGUgPSBuZXcgRXJyb3IoKVxuXG5ET01FeGNlcHRpb24ucHJvdG90eXBlLnRvU3RyaW5nID0gZnVuY3Rpb24gKCkge1xuICByZXR1cm4gYCR7dGhpcy5uYW1lfTogJHt0aGlzLm1lc3NhZ2V9YFxufVxuIl19
