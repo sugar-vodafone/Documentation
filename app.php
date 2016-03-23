@@ -47,7 +47,7 @@ $app->post('/selections', function (Request $request) use ($app) {
         'lang' => $request->request->get('language'),
         'file' => $request->request->get('filename'),
         'serialized_range' => $request->get('serialized_range'),
-        'body_html'  => $request->request->get('body_html'),
+        'body_html'  => stripcslashes($request->request->get('body_html')),
         'body_text'  => $request->request->get('body_text')
     );
 
@@ -93,15 +93,15 @@ $app->get('/selections', function (Request $request) use ($app) {//var_dump($_SE
     //var_dump($params);
 
     if(!empty($params['range']))
-        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text FROM selections WHERE serialized_range = ? AND deleted = 0', array($params['range']));
+        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text, body_html FROM selections WHERE serialized_range = ? AND deleted = 0', array($params['range']));
     elseif(!empty($params['lang']) && !empty($params['file']))
-        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text FROM selections WHERE lang = ? AND file = ? AND deleted = 0', array($params['lang'], $params['file']));
+        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text, body_html FROM selections WHERE lang = ? AND file = ? AND deleted = 0', array($params['lang'], $params['file']));
     elseif(empty($params['lang']) && !empty($params['file']))
-        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text FROM selections WHERE file = ? AND deleted = 0', array($params['file']));
+        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text, body_html FROM selections WHERE file = ? AND deleted = 0', array($params['file']));
     elseif(!empty($params['lang']) && empty($params['file']))
-        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text FROM selections WHERE lang = ? AND deleted = 0', array($params['lang']));
+        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text, body_html FROM selections WHERE lang = ? AND deleted = 0', array($params['lang']));
     else
-        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text FROM selections');
+        $data = $app['db']->fetchAll('SELECT id, lang, file, serialized_range, body_text, body_html FROM selections');
 
     //var_dump($data);
 
