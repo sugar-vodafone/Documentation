@@ -2,16 +2,27 @@
     <head>
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
         <script src="js/jquery.selection.js"></script>
         <script src="js/rangy/rangy-core.js"></script>
         <script src="js/rangy/rangy-serializer.js"></script>
         <script src="js/rangy/rangy-textrange.js"></script>
         <script src="js/rangy/rangy-classapplier.js"></script>
         <script src="js/rangy/rangy-highlighter.js"></script>
+        <script src="js/config.js"></script>
         <script src="js/utils.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/tooltipster.min.css" />
         <style>
             .selected {
                 text-decoration: line-through
+            }
+            .selected img {
+                -webkit-filter: blur(5px);
+            }
+            .link {
+                text-decoration: underline;
+                cursor: pointer;
             }
         </style>
     </head>
@@ -20,7 +31,27 @@
         <select id="fileList">
             <option></option>
             <option value="English/MS_Excel_Plug-in_Installation_Guide">English - MS_Excel_Plug-in_Installation_Guide</option>
+            <option value="English/MS_Excel_Plug-in_User_Guide">English - MS_Excel_Plug-in_User_Guide</option>
+            <option value="English/MS_Outlook_Plug-in_Installation_Guide_2.x">English - MS_Outlook_Plug-in_Installation_Guide_2.x</option>
+            <option value="English/MS_Outlook_Plug-in_User_Guide_2.x">English - MS_Outlook_Plug-in_User_Guide_2.x</option>
+            <option value="English/MS_Word_Plug-in_Installation_Guide">English - MS_Word_Plug-in_Installation_Guide</option>
+            <option value="English/MS_Word_Plug-in_User_Guide">English - MS_Word_Plug-in_User_Guide</option>
+            <option value="English/SugarCRM_Mobile_for_Android_User_Guide">English - SugarCRM_Mobile_for_Android_User_Guide</option>
+            <option value="English/SugarCRM_Mobile_for_iOS_User_Guide">English - SugarCRM_Mobile_for_iOS_User_Guide</option>
+            <option value="English/Sugar_Enterprise_7.6_Administration_Guide">English - Sugar_Enterprise_7.6_Administration_Guide</option>
+            <option value="English/Sugar_Enterprise_7.6_Application_Guide">English - Sugar_Enterprise_7.6_Application_Guide</option>
+            <option value="English/Sugar_Enterprise_7.6_Portal_Deployment_User_Guide">English - Sugar_Enterprise_7.6_Portal_Deployment_User_Guide</option>
             <option value="Italian/MS_Excel_Plug-in_Installation_Guide">Italian - MS_Excel_Plug-in_Installation_Guide</option>
+            <option value="Italian/MS_Excel_Plug-in_User_Guide">Italian - MS_Excel_Plug-in_User_Guide</option>
+            <option value="Italian/MS_Outlook_Plug-in_Installation_Guide_2.x">Italian - MS_Outlook_Plug-in_Installation_Guide_2.x</option>
+            <option value="Italian/MS_Outlook_Plug-in_User_Guide_2.x">Italian - MS_Outlook_Plug-in_User_Guide_2.x</option>
+            <option value="Italian/MS_Word_Plug-in_Installation_Guide">Italian - MS_Word_Plug-in_Installation_Guide</option>
+            <option value="Italian/MS_Word_Plug-in_User_Guide">Italian - MS_Word_Plug-in_User_Guide</option>
+            <option value="Italian/SugarCRM_Mobile_for_Android_User_Guide">Italian - SugarCRM_Mobile_for_Android_User_Guide</option>
+            <option value="Italian/SugarCRM_Mobile_for_iOS_User_Guide">Italian - SugarCRM_Mobile_for_iOS_User_Guide</option>
+            <option value="Italian/Sugar_Enterprise_7.6_Administration_Guide">Italian - Sugar_Enterprise_7.6_Administration_Guide</option>
+            <option value="Italian/Sugar_Enterprise_7.6_Application_Guide">Italian - Sugar_Enterprise_7.6_Application_Guide</option>
+            <option value="Italian/Sugar_Enterprise_7.6_Portal_Deployment_User_Guide">Italian - Sugar_Enterprise_7.6_Portal_Deployment_User_Guide</option>
         </select>
     </div>
     <div id="content">
