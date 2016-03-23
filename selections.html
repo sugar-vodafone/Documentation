@@ -83,7 +83,6 @@
 </script>
 
 <script language="javascript">
-    var selections, view;
     var TableView = Backbone.View.extend({
         initialize: function() {
             this.collection.on("add", this.setStatusNew, this);
@@ -141,9 +140,9 @@
         });
     }
 
-    function loadPage() {
+    function loadPage(view) {
         getSelections(function(results) {
-            selections.set(results);
+            view.collection.set(results);
 //            console.log(selections);
         });
     }
@@ -153,12 +152,12 @@
         var path = val.split("/");
         language = path[0];
         filename = path[1];
-        selections = new Backbone.Collection();
-        view = new TableView({collection: selections});
+        var selections = new Backbone.Collection();
+        var view = new TableView({collection: selections});
 
-        loadPage();
+        loadPage(view);
         setInterval(function() {
-            loadPage();
+            loadPage(view);
         }, 3000);
     });
 
