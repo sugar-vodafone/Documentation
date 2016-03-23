@@ -2,7 +2,7 @@ var applier, highlighter, highlightStore, language, filename, rootNode, rangeSto
 
 function getSelectionsFromServer(callback) {
     $.get({
-        url: "http://localhost/clients/Vodafone/Documentation/selections",
+        url: config.apiRoot + "/selections",
         data: {
             "language": language,
             "filename": filename
@@ -14,9 +14,22 @@ function getSelectionsFromServer(callback) {
     });
 }
 
+function getSelectionFromServerByRange(range, callback) {
+    $.get({
+        url: config.apiRoot + "/selections",
+        data: {
+            "range": range
+        },
+        dataType: "json",
+        success: function(result) {
+            callback(result);
+        }
+    });
+}
+
 function saveSelectionToServer(selection, callback) {
     $.post({
-        url: "http://localhost/clients/Vodafone/Documentation/selections",
+        url: config.apiRoot + "/selections",
         data: selection,
         dataType: "json",
         success: function (result) {
@@ -27,7 +40,7 @@ function saveSelectionToServer(selection, callback) {
 
 function getSourceDocumentationPage(lang, file, callback) {
     $.get({
-        url: "http://localhost/clients/Vodafone/Documentation/" + lang + "/" + file + ".html",
+        url: config.apiRoot + "/" + lang + "/" + file + ".html",
         success: function (result) {
             //console.log(result);
             callback(result);
@@ -36,11 +49,7 @@ function getSourceDocumentationPage(lang, file, callback) {
 }
 
 function getSelectedRange() {
-    var range;
-
-    if(isValidSelection()) {
-        range = rangy.getSelection().getRangeAt(0);
-    }
+    var range = rangy.getSelection().getRangeAt(0);
 
     return range;
 }
@@ -57,33 +66,119 @@ function getSelectedText(html) {
         return rangy.getSelection().text();
 }
 
-function isValidSelection() {
+function isValidSelection(offsets) {
+    var selX = Math.abs(offsets['x_down'] - offsets['x_up']);
+    var selY = Math.abs(offsets['y_down'] - offsets['y_up']);
+
     var sel = rangy.getSelection();
-    if(sel.nativeSelection.type == "Range")
+    //console.log(selX,selY,sel.nativeSelection.type);
+    if((selX > 5 || selY > 5) && sel.nativeSelection.type == "Range") {
+        console.log("valid selection");
         return true;
-    else
+    }
+    else {
         return false;
+    }
 }
 
-function hideHighlights() {
-    highlighter.removeAllHighlights();
-}
+function intersectsExistingRange(serialized_range) {
+    var intersectsExistingRange = false;
+    var newRange = rangy.deserializeRange(serialized_range, rootNode);
 
-function showHighlights(ranges) {
-    hideHighlights(); //remove any existing highlights from the screen
-    highlighter.highlightRanges("selected", ranges);
-}
-
-function showAllHighlights() {
-    var ranges = [];
     for(var i=0; i<rangeStore.length; i++) {
         var range = rangy.deserializeRange(rangeStore[i], rootNode);
-        //range.document = document;
-        ranges.push(range);
+        if(intersectsExistingRange = newRange.intersectsRange(range))
+            break;
     }
 
-    showHighlights(ranges);
+    return intersectsExistingRange;
 }
+
+function getIntersectingRange(serialized_range, return_serialized) {
+    var newRange = rangy.deserializeRange(serialized_range, rootNode);
+    var return_serialized = (return_serialized)?true:false;
+
+    for(var i=0; i<rangeStore.length; i++) {
+        var range = rangy.deserializeRange(rangeStore[i], rootNode);
+        if(newRange.intersectsRange(range)) {
+            if(return_serialized)
+                return rangeStore[i];
+            else
+                return range;
+
+            break;
+        }
+    }
+}
+
+//function hideHighlights() {
+//    $(".selected").tooltipster("disable");
+//    $(".selected").removeClass("tooltipstered");
+//    highlighter.removeAllHighlights();
+//}
+
+//function showHighlights(ranges) {
+//    hideHighlights(); //remove any existing highlights from the screen
+//    highlighter.highlightRanges("selected", ranges);
+//    $(".selected").tooltipster({
+//        interactive: true,
+//        position: "top",
+//        content: "<span href='#' onclick='alertTest();' class='link'>Remove</span> this selection.",
+//        contentAsHTML: true,
+//        //autoClose: false
+//    });
+//}
+
+//function alertTest() {
+//    alert("Removing selection");
+//}
+
+//function showAllHighlights() {
+//    var ranges = [];
+//    for(var i=0; i<rangeStore.length; i++) {
+//        try {
+//            var range = rangy.deserializeRange(rangeStore[i], rootNode);
+//            //range.document = document;
+//            ranges.push(range);
+//        }
+//        catch(err) {
+//            console.log(err);
+//            getSelectionFromServerByRange(rangeStore[i], function(result) {
+//                console.log(result);
+//            });
+//        }
+//    }
+//
+//    showHighlights(ranges);
+//}
+
+//function showAllHighlightsNew() {
+//    var sortedRangeStore = _.sortBy(rangeStore, function(val){ return -parseInt(val.split(",")[0].split(":")[0].replace(/\D+/g,'')); }); console.log(sortedRangeStore);
+//
+//    for(var i=0; i<sortedRangeStore.length; i++) {
+//        try {
+//            var el = document.createElement("span");
+//            el.className = "selected";
+//
+//            var range = rangy.deserializeRange(sortedRangeStore[i], rootNode);
+//            range.surroundContents(el);
+//
+//            //$(".selected").tooltipster({
+//            //    interactive: true,
+//            //    position: "top",
+//            //    content: "<span class='link' data-range='"+sortedRangeStore[i]+"'>Remove</span> this selection.",
+//            //    contentAsHTML: true,
+//            //    //autoClose: false
+//            //});
+//        }
+//        catch(err) {
+//            console.log(err);
+//            getSelectionFromServerByRange(sortedRangeStore[i], function(result) {
+//                console.log(result);
+//            });
+//        }
+//    }
+//}
 
 function addRangeToStore(serialized_range) {
     console.log("Added");
@@ -95,7 +190,7 @@ function removeRangeFromStore(serialized_range) {
     console.log("Removed");
     for(var i=0; i<rangeStore.length; i++) {
         if(rangeStore[i] == serialized_range) {
-            console.log(rangeStore[i], serialized_range, i);
+            //console.log(rangeStore[i], serialized_range, i);
             rangeStore.splice(i, 1);
         }
     }
@@ -110,17 +205,32 @@ function handleUserSelection() {
         "body_text": getSelectedText()
     };
 
-    saveSelectionToServer(selectionData, function (selection) {
-        console.log(selection);
-
-        if(selection.status == "Added")
+    if(!intersectsExistingRange(selectionData.serialized_range)) {
+        saveSelectionToServer(selectionData, function (selection) {
+            console.log(selection);
             addRangeToStore(selection.serialized_range);
-        else
-            removeRangeFromStore(selection.serialized_range);
-        console.log(rangeStore);
-        showAllHighlights();
+            //console.log(rangeStore);
+            //showAllHighlights();
+        });
+    }
+    else {
+        //showAllHighlights();
+        alert("You've already selected this range!");
+    }
+}
 
-    });
+function beginPollingSelectionsFromServer() {
+    setInterval(function() {
+        getSelectionsFromServer(function(selections) {
+            console.log(selections);
+            rangeStore = [];
+            selections.forEach(function(selection) {
+                rangeStore.push(selection.serialized_range);
+            });
+            //hideHighlights();
+            //showAllHighlights();
+        });
+    }, 30000);
 }
 
 function loadPage(lang, file) {
@@ -131,23 +241,28 @@ function loadPage(lang, file) {
         $("#content").empty();
         $("#footer").hide();
     } else {
-        $("#footer").show();
+        $("#footer").hide();
+        $("#content").empty();
+        $("#content").html("<h1>Loading...</h1>");
         rangeStore = [];
         getSourceDocumentationPage(lang, file, function(result) {
             $("#content").empty();
             $("#content").html(result);
+            //$("#footer").show();
             getSelectionsFromServer(function(selections) {
                 console.log(selections);
                 selections.forEach(function(selection) {
-                   rangeStore.push(selection.serialized_range);
+                    rangeStore.push(selection.serialized_range);
+                    //beginPollingSelectionsFromServer();
                 });
-                showAllHighlights();
+                //showAllHighlights();
             });
         });
     }
 }
 
 $( document ).ready(function() {
+    var offsets = [];
     rangy.init();
     applier = rangy.createClassApplier("selected");
     highlighter = rangy.createHighlighter(null,"TextRange"); //If this is too slow, can omit "TextRange" algorithm converter
@@ -156,16 +271,22 @@ $( document ).ready(function() {
     rangeStore = [];
 
     $("body").on("mousedown", function(el) {//console.log(el);
-        hideHighlights();
+        offsets['x_down'] = el.offsetX;
+        offsets['y_down'] = el.offsetY;
+        //hideHighlights();
     });
 
     $("body").on("mouseup", function(el) {//console.log(el);
+        offsets['x_up'] = el.offsetX;
+        offsets['y_up'] = el.offsetY;
+
+        //isValidSelection(offsets);
         setTimeout(function() {
-            if(isValidSelection()) {
+            if(isValidSelection(offsets)) {
                 handleUserSelection();
             }
-            else
-                showAllHighlights();
+            //else
+                //showAllHighlights();
         }, 100);
     });
 
@@ -184,3 +305,12 @@ $( document ).ready(function() {
     }
 
 });
+
+
+//$(".selected").tooltipster({
+//    interactive: true,
+//    position: "top",
+//    content: "Click <a href='#'>here</a> to remove this selection.",
+//    contentAsHTML: true,
+//    //autoClose: false
+//});
