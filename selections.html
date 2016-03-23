@@ -83,6 +83,7 @@
 </script>
 
 <script language="javascript">
+    var view;
     var TableView = Backbone.View.extend({
         initialize: function() {
             this.collection.on("add", this.setStatusNew, this);
@@ -112,6 +113,10 @@
             setTimeout(function() {
                 this.set({status: false});
             }.bind(model), 3000);
+        },
+        destroy: function() {
+            this.off();
+            this.collection.off();
         }
     });
 
@@ -153,7 +158,12 @@
         language = path[0];
         filename = path[1];
         var selections = new Backbone.Collection();
-        var view = new TableView({collection: selections});
+        if(view) {
+            console.log(view);
+            view.destroy();
+        }
+
+        view = new TableView({collection: selections});
 
         loadPage(view);
         setInterval(function() {
