@@ -74,8 +74,8 @@
             {{#each selections}}
             <tr {{#if status}}class="success"{{/if}}>
                 <td class="text-center">{{id}}</td>
-                <td>{{body_text}}</td>
-                <td class="text-center"><button id="delete" type='button' class='btn btn-danger' data-selection-id='{{id}}'>Remove</button></td>
+                <td>{{{body_html}}}</td>
+                <td class="text-center"><button id="delete" type='button' class='btn btn-danger' data-selection-id='{{id}}'>Delete</button></td>
             </tr>
             {{/each}}
         </tbody>
@@ -83,20 +83,27 @@
 </script>
 
 <script language="javascript">
-    var view;
-    var TableView = Backbone.View.extend({
+    var view, timerId;
+    var SelectionsView = Backbone.View.extend({
         initialize: function() {
             this.collection.on("add", this.setStatusNew, this);
             this.collection.on("all", this.render, this);
         },
         el: '.content',
         className: 'table-responsive',
-        render: function(data) {
+        render: function(e) {
+            var data = this.collection.toJSON();
+            for(var i=0; i<data.length; i++) {
+//                data[i].body_html = data[i].body_html.replace(/\\"/g,'"');
+//                data[i].body_html = data[i].body_html.replace(/\\'/g,"'");
+//                console.log(data[i].body_html);
+            }
 //            console.log(this.collection.toJSON());
             var source   = $("#table-template").html();
             var template = Handlebars.compile(source);
-            var table = template({ selections: this.collection.toJSON() });
+            var table = template({ selections: data });
             this.$el.html(table);
+            return this;
         },
         events: {
             "click #delete" : "deleteSelection"
@@ -118,6 +125,13 @@
             this.off();
             this.collection.off();
         }
+    });
+
+    var SelectionsCollection = Backbone.Collection.extend({
+//        parse: function(response) {
+//            console.log(response);
+//            return response.results;
+//        }
     });
 
     function getSelections(callback) {
@@ -157,18 +171,19 @@
         var path = val.split("/");
         language = path[0];
         filename = path[1];
-        var selections = new Backbone.Collection();
+        var selections = new SelectionsCollection();
         if(view) {
             console.log(view);
             view.destroy();
+            delete(view);
         }
 
-        view = new TableView({collection: selections});
+        view = new SelectionsView({collection: selections});
 
         loadPage(view);
-        setInterval(function() {
-            loadPage(view);
-        }, 3000);
+//        timerId = setInterval(function() {
+//            loadPage(view);
+//        }, 3000);
     });
 
     if(window.location.hash) {
