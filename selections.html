@@ -21,6 +21,37 @@
             text-decoration: underline;
             cursor: pointer;
         }
+        .show-grid {
+            margin-bottom: 15px;
+        }
+        .show-grid [class^=col-] {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: #eee;
+            background-color: rgba(86,61,124,.15);
+            border: 1px solid #ddd;
+            border: 1px solid rgba(86,61,124,.2);
+        }
+        .row {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display:         flex;
+            flex-wrap: wrap;
+            border: 1px solid #ddd;
+        }
+        .row:nth-child(even){
+            background-color: #f9f9f9;
+        }
+        .row:nth-child(odd){
+            background-color: #ffffff;
+        }
+        .row > [class*='col-'] {
+            display: flex;
+            flex-direction: column;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -51,12 +82,17 @@
         <option value="Italian/Sugar_Enterprise_7.6_Portal_Deployment_User_Guide">Italian - Sugar_Enterprise_7.6_Portal_Deployment_User_Guide</option>
     </select>
 </div>
-<div class="row" style="margin-top: 25px;">
+<div style="margin-top: 25px;">
     <div class="content col-md-12">
+        <div class="row">
+            <div class="col-md-1 text-center"><b>ID</b></div>
+            <div class="col-md-10" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;"><b>Text</b></div>
+            <div class="col-md-1">&nbsp;</div>
+        </div>
     </div>
 </div>
 
-<script id="table-template" type="text/x-handlebars-template">
+<script id="table-template-old" type="text/x-handlebars-template">
     <table class="table table-striped table-bordered">
         <colgroup>
             <col class="col-xs-1">
@@ -80,6 +116,21 @@
             {{/each}}
         </tbody>
     </table>
+</script>
+
+<script id="table-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-md-1 text-center"><b>ID</b></div>
+        <div class="col-md-10" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;"><b>Text</b></div>
+        <div class="col-md-1">&nbsp;</div>
+    </div>
+    {{#each selections}}
+    <div class="row">
+        <div class="col-md-1 text-center">{{id}}</div>
+        <div class="col-md-10" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;">{{{body_html}}}</div>
+        <div class="col-md-1"><button id="delete" type='button' class='btn btn-danger' data-selection-id='{{id}}'>Delete</button></div>
+    </div>
+    {{/each}}
 </script>
 
 <script language="javascript">
