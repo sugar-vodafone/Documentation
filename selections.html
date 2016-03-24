@@ -24,16 +24,16 @@
         .row {
             border: 1px solid #ddd;
         }
-        .row:nth-child(even){
-            background-color: #f9f9f9;
-        }
-        .row:nth-child(odd){
-            background-color: #ffffff;
-        }
         .row > [class*='col-'] {
             padding-top: 15px;
             padding-bottom: 15px;
             min-height: 75px;
+        }
+        .row.row-striped:nth-child(even){
+            background-color: #f9f9f9;
+        }
+        .row.row-striped:nth-child(odd){
+            background-color: #ffffff;
         }
     </style>
 </head>
@@ -69,7 +69,7 @@
     <div class="content col-md-12">
         <div class="row row-eq-height">
             <div class="hidden-xs hidden-sm col-md-1 text-center"><b>ID</b></div>
-            <div class="col-xs-10 col-md-10" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;"><b>Text</b></div>
+            <div class="col-xs-10 col-md-10" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;"><b>Selection</b></div>
             <div class="col-xs-2 col-md-1">&nbsp;</div>
         </div>
     </div>
@@ -104,11 +104,11 @@
 <script id="table-template" type="text/x-handlebars-template">
     <div class="row row-eq-height">
         <div class="hidden-xs hidden-sm col-md-1 text-center"><b>ID</b></div>
-        <div class="col-xs-10 col-md-10" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;"><b>Text</b></div>
+        <div class="col-xs-10 col-md-10" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;"><b>Selection</b></div>
         <div class="col-xs-2 col-md-1">&nbsp;</div>
     </div>
     {{#each selections}}
-    <div class="row row-eq-height">
+    <div class="row row-striped row-eq-height">
         <div class="hidden-xs hidden-sm col-md-1 text-center">{{id}}</div>
         <div class="col-xs-10 col-md-10" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;">{{{body_html}}}</div>
         <div class="col-xs-2 col-md-1 text-center"><button id="delete" type='button' class='btn btn-danger' data-selection-id='{{id}}'>Delete</button></div>
@@ -135,19 +135,26 @@
 //            console.log(this.collection.toJSON());
             var source   = $("#table-template").html();
             var template = Handlebars.compile(source);
-            var table = template({ selections: data });
-            this.$el.html(table);
+            var list = template({ selections: data });
+            this.$el.html(list);
+            $(".content").find("table").addClass("table"); //jquery hack to apply bootstrap style to tables
+
             return this;
         },
         events: {
             "click #delete" : "deleteSelection"
         },
         deleteSelection: function(e) {
-            var selectionId = $(e.currentTarget).data('selectionId');
-            deleteSelection(selectionId, function(result) {
+            var confirmDelete = confirm("Are you sure you want to delete this selection?");
+            if (confirmDelete) {
+                var selectionId = $(e.currentTarget).data('selectionId');
+                deleteSelection(selectionId, function(result) {
 //                console.log("deleted", result, this);
-                this.collection.remove(selectionId);
-            }.bind(this));
+                    this.collection.remove(selectionId);
+                }.bind(this));
+            } else {
+                console.log("Cancelled deletion");
+            }
         },
         setStatusNew: function(model) {
             model.set({status: true});
