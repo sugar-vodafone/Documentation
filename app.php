@@ -26,21 +26,21 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 //    )
 //));
 
-$app->before(function (Request $request) {
-    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-        $data = json_decode($request->getContent(), true);
-        $request->request->replace(is_array($data) ? $data : array());
-    }
-});
+//$app->before(function (Request $request) {
+//    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+//        $data = json_decode($request->getContent(), true);
+//        $request->request->replace(is_array($data) ? $data : array());
+//    }
+//});
 
-$app->get('/login', function(Request $request) use ($app) {
+$app->get('/api/login', function(Request $request) use ($app) {
     return $app['twig']->render('login.html', array(
         'error'         => $app['security.last_error']($request),
         'last_username' => $app['session']->get('_security.last_username'),
     ));
 });
 
-$app->post('/selections', function (Request $request) use ($app) {
+$app->post('/api/selections', function (Request $request) use ($app) {
 //    var_dump($request);
 
     $params = array(
@@ -83,7 +83,7 @@ $app->post('/selections', function (Request $request) use ($app) {
     return $app->json($response, $statusCode);
 });
 
-$app->get('/selections', function (Request $request) use ($app) {//var_dump($_SERVER);
+$app->get('/api/selections', function (Request $request) use ($app) {//var_dump($_SERVER);
     $data = array();
     $params = array(
         'lang' => $request->get('language'),
@@ -108,17 +108,17 @@ $app->get('/selections', function (Request $request) use ($app) {//var_dump($_SE
     return $app->json($data, 200);
 });
 
-$app->get('/document', function (Request $request) use ($app) {//var_dump($_SERVER);
-    $params = array(
-        'lang' => $request->get('language'),
-        'file' => $request->get('filename')
-    );
+//$app->get('/document', function (Request $request) use ($app) {//var_dump($_SERVER);
+//    $params = array(
+//        'lang' => $request->get('language'),
+//        'file' => $request->get('filename')
+//    );
+//
+//    $file = file_get_contents($params['lang'] . "/" . $params['file'] . ".html");
+//    return $app->json($file, 200);
+//});
 
-    $file = file_get_contents($params['lang'] . "/" . $params['file'] . ".html");
-    return $app->json($file, 200);
-});
-
-$app->delete('/selections/{id}', function (Request $request, $id) use ($app) {
+$app->delete('/api/selections/{id}', function (Request $request, $id) use ($app) {
     $data = $app['db']->fetchAssoc('SELECT * FROM selections WHERE id = ?', array($id));
     if($data['deleted']) {
         $data = array('msg' => 'There is no selection with the ID ('.$id.') in the database');
@@ -133,23 +133,94 @@ $app->delete('/selections/{id}', function (Request $request, $id) use ($app) {
 
 });
 
-//$app->post('/selections/download', function (Request $request) use ($app) {
-//    $filename = $request->request->get('filename');
-//    $language = $request->request->get('language');
-//    $html = $request->get('html');
-//
-//// Output CSV-specific headers
-//    header('Pragma: public');
-//    header('Expires: 0');
-//    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-//    header('Cache-Control: private', false);
-//    header('Content-Type: application/octet-stream');
-//    header('Content-Disposition: attachment; filename="' . $filename . '.html";');
-//    header('Content-Transfer-Encoding: binary');
-//
-//// Stream the CSV data
-//    exit($html);
-//});
+$app->get('/api/selections/document/download', function (Request $request) use ($app) {
+    $params = array(
+        'lang' => $request->get('language'),
+        'file' => $request->get('filename')
+    );
+
+    if(!empty($params['lang']) && !empty($params['file'])) {
+        $contents = file_get_contents($params['lang'] . "/" . $params['file'] . ".html");
+        $selections = $app['db']->fetchAll('SELECT body_html FROM selections WHERE lang = ? AND file = ? AND deleted = 0', array($params['lang'], $params['file']));
+
+        $updatedContents = applySelectionsToDocument($selections, $contents);
+
+        header('Pragma: public');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Cache-Control: private', false);
+        header('Content-Type: text/html');
+        header('Content-Disposition: attachment; filename="' . $params['file'] . '.html";');
+        //    header('Content-Transfer-Encoding: binary');
+
+        // Stream the CSV data
+        exit($updatedContents);
+    }
+});
+
+$app->get('/api/selections/document', function (Request $request) use ($app) {
+    $params = array(
+        'lang' => $request->get('language'),
+        'file' => $request->get('filename')
+    );
+
+    if(!empty($params['lang']) && !empty($params['file'])) {
+        $contents = file_get_contents($params['lang'] . "/" . $params['file'] . ".html");
+        $selections = $app['db']->fetchAll('SELECT body_html FROM selections WHERE lang = ? AND file = ? AND deleted = 0', array($params['lang'], $params['file']));
+
+        $updatedContents = applySelectionsToDocument($selections, $contents);
+
+        return $updatedContents;
+    }
+});
+
+$app->post('/api/stream', function (Request $request) use ($app) {
+    $params = array(
+        'lang' => $request->get('language'),
+        'file' => $request->get('filename'),
+        'contents' => $request->get('contents')
+    );
+
+    header('Pragma: public');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Cache-Control: private', false);
+    header('Content-Type: text/html');
+    header('Content-Disposition: attachment; filename="' . $params['file'] . '.html";');
+    //    header('Content-Transfer-Encoding: binary');
+
+    // Stream the CSV data
+    exit($params['contents']);
+});
+
+function applySelectionsToDocument($selections, $contents) {
+    $search = array(
+        '/\>[^\S ]+/s',  // strip whitespaces after tags, except space
+        '/[^\S ]+\</s',  // strip whitespaces before tags, except space
+        '/(\s)+/s',       // shorten multiple whitespace sequences
+        '/\s\/\>/',
+        '/SugarCRM/',
+        '/Sugar/'
+    );
+
+    $replace = array(
+        '>',
+        '<',
+        '\\1',
+        '>',
+        'VodafoneCRM',
+        'VodafoneCRM'
+    );
+
+    $contents = preg_replace($search, $replace, $contents);
+
+    for ($i = 0; $i < count($selections); $i++) {
+        $body_html = preg_replace($search, $replace, $selections[$i]['body_html']);
+        $contents = str_replace($body_html, "", $contents);
+    }
+
+    return $contents;
+}
 
 
 $app->run();

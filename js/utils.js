@@ -111,46 +111,46 @@ function getIntersectingRange(serialized_range, return_serialized) {
     }
 }
 
-//function hideHighlights() {
-//    $(".selected").tooltipster("disable");
-//    $(".selected").removeClass("tooltipstered");
-//    highlighter.removeAllHighlights();
-//}
+function hideHighlights() {
+    $(".selected").tooltipster("disable");
+    $(".selected").removeClass("tooltipstered");
+    highlighter.removeAllHighlights();
+}
 
-//function showHighlights(ranges) {
-//    hideHighlights(); //remove any existing highlights from the screen
-//    highlighter.highlightRanges("selected", ranges);
-//    $(".selected").tooltipster({
-//        interactive: true,
-//        position: "top",
-//        content: "<span href='#' onclick='alertTest();' class='link'>Remove</span> this selection.",
-//        contentAsHTML: true,
-//        //autoClose: false
-//    });
-//}
+function showHighlights(ranges) {
+    hideHighlights(); //remove any existing highlights from the screen
+    highlighter.highlightRanges("selected", ranges);
+    $(".selected").tooltipster({
+        interactive: true,
+        position: "top",
+        content: "<span href='#' onclick='alertTest();' class='link'>Remove</span> this selection.",
+        contentAsHTML: true,
+        //autoClose: false
+    });
+}
 
-//function alertTest() {
-//    alert("Removing selection");
-//}
+function alertTest() {
+    alert("Removing selection");
+}
 
-//function showAllHighlights() {
-//    var ranges = [];
-//    for(var i=0; i<rangeStore.length; i++) {
-//        try {
-//            var range = rangy.deserializeRange(rangeStore[i], rootNode);
-//            //range.document = document;
-//            ranges.push(range);
-//        }
-//        catch(err) {
-//            console.log(err);
-//            getSelectionFromServerByRange(rangeStore[i], function(result) {
-//                console.log(result);
-//            });
-//        }
-//    }
-//
-//    showHighlights(ranges);
-//}
+function showAllHighlights() {
+    var ranges = [];
+    for(var i=0; i<rangeStore.length; i++) {
+        try {
+            var range = rangy.deserializeRange(rangeStore[i], rootNode);
+            //range.document = document;
+            ranges.push(range);
+        }
+        catch(err) {
+            console.log(err);
+            getSelectionFromServerByRange(rangeStore[i], function(result) {
+                console.log(result);
+            });
+        }
+    }
+
+    showHighlights(ranges);
+}
 
 //function showAllHighlightsNew() {
 //    var sortedRangeStore = _.sortBy(rangeStore, function(val){ return -parseInt(val.split(",")[0].split(":")[0].replace(/\D+/g,'')); }); console.log(sortedRangeStore);
@@ -239,17 +239,15 @@ function loadPage(lang, file) {
 
     if(lang == undefined || file == undefined) {
         $("#content").empty();
-        $("#footer").hide();
     } else {
-        $("#footer").hide();
         $("#content").empty();
         $("#content").html("<h1>Loading...</h1>");
         rangeStore = [];
         getSourceDocumentationPage(lang, file, function(result) {
             $("#content").empty();
             $("#content").html(result);
-            //$("#footer").show();
             getSelectionsFromServer(function(selections) {
+                data = selections;
                 console.log(selections);
                 selections.forEach(function(selection) {
                     rangeStore.push(selection.serialized_range);
@@ -262,7 +260,7 @@ function loadPage(lang, file) {
 }
 
 $( document ).ready(function() {
-    var offsets = [];
+    var data, offsets = [];
     rangy.init();
     applier = rangy.createClassApplier("selected");
     highlighter = rangy.createHighlighter(null,"TextRange"); //If this is too slow, can omit "TextRange" algorithm converter
@@ -290,7 +288,7 @@ $( document ).ready(function() {
         }, 100);
     });
 
-    $("#fileList").on("change", function(el) {
+    $("select.fileList").on("change", function(el) {
         var val = $(el.currentTarget).val();
         var path = val.split("/");
         language = path[0];
@@ -300,8 +298,8 @@ $( document ).ready(function() {
 
     if(window.location.hash) {
         var hash = window.location.hash.substr(1,window.location.hash.length);
-        $("#fileList").val(hash);
-        $("#fileList").trigger("change");
+        $("select.fileList").val(hash);
+        $("select.fileList").trigger("change");
     }
 
 });

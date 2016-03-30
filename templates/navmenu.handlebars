@@ -1,0 +1,33 @@
+<div class="navbar-header">
+    <a class="navbar-brand" href="#">Vodafone Documentation</a>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        <li>
+            <select class="fileList">
+                <option value="">Select which file you'd like to load</option>
+                {{#each fileList}}
+                    <option value="{{language}}/{{filename}}" {{#if active}}selected="selected"{{/if}}>{{language}} - {{filename}}</option>
+                {{/each}}
+            </select>
+        </li>
+        {{#if review}}
+        <li style="margin-left: 25px;">
+            <form name="download" target="_blank" method="post">
+                <input id="contents" name="contents" type="hidden" />
+                <input id="lang" name="language" type="hidden" />
+                <input id="file" name="filename" type="hidden" />
+                <button type="button" class="btn btn-default navbar-btn download-btn1">Download (Client)</button>
+            </form>
+        </li>
+        <li style="margin-left: 25px;">
+            <button type="button" class="btn btn-default navbar-btn download-btn2">Download (Server)</button>
+        </li>
+        {{/if}}
+    </ul>
+    <ul class="nav navbar-nav navbar-right pages" style="margin-right: 25px;">
+        <li id="edit" {{#if edit}}class="active brian"{{/if}}><a role="button" tabindex="0">Edit</a></li>
+        <li  id="selections" {{#if selections}}class="active brian"{{/if}}><a role="button" tabindex="0">Selections</a></li>
+        <li id="review" {{#if review}}class="active brian"{{/if}}><a role="button" tabindex="0">Review</a></li>
+    </ul>
+</div>

@@ -5,6 +5,6 @@
     RewriteBase /clients/Vodafone/Documentation
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ app.php [QSA,L]
+    RewriteRule ^api app.php [QSA,L]
 #    RewriteRule ^api/(.*)$ app.php/$1 [L,QSA]
 </IfModule>
