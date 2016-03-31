@@ -52,25 +52,17 @@ $app->post('/api/selections', function (Request $request) use ($app) {
     );
 
     try {
-        $selection_id = $app['db']->fetchColumn('SELECT id FROM selections WHERE (serialized_range = ? AND lang = ?) OR body_text = ?', array($params['serialized_range'], $params['lang'], $params['body_text']), 0);
+        $selection_id = $app['db']->fetchColumn('SELECT id, lang, file, serialized_range, body_text, body_html FROM selections WHERE (serialized_range = ? AND lang = ? AND file = ?) OR body_text = ?', array($params['serialized_range'], $params['lang'], $params['file'], $params['body_text']), 0);
     //    var_dump($selection_id);
 
         if($selection_id) {
-            $app['db']->delete('selections', array('id' => $selection_id));
-            $response = array(
-                'id' => $app['db']->lastInsertId(),
-                'serialized_range' => $params['serialized_range'],
-                'status' => 'Removed'
-            );
-            $statusCode = 200;
+            $app['db']->update('selections', array('deleted' => 0), array('id' => $selection_id));
+            $params['status'] = 'Added';
+            $statusCode = 201;
         }
         else {
             $app['db']->insert('selections', $params);
-            $response = array(
-                'id' => $app['db']->lastInsertId(),
-                'serialized_range' => $params['serialized_range'],
-                'status' => 'Added'
-            );
+            $params['status'] = 'Added';
             $statusCode = 201;
         }
     } catch (\PDOException $e) {
@@ -80,7 +72,7 @@ $app->post('/api/selections', function (Request $request) use ($app) {
         $statusCode = 400;
     }
 
-    return $app->json($response, $statusCode);
+    return $app->json($params, $statusCode);
 });
 
 $app->get('/api/selections', function (Request $request) use ($app) {//var_dump($_SERVER);
@@ -181,6 +173,8 @@ $app->post('/api/stream', function (Request $request) use ($app) {
         'contents' => $request->get('contents')
     );
 
+    $contents = stripcslashes($params['contents']);
+
     header('Pragma: public');
     header('Expires: 0');
     header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -189,8 +183,8 @@ $app->post('/api/stream', function (Request $request) use ($app) {
     header('Content-Disposition: attachment; filename="' . $params['file'] . '.html";');
     //    header('Content-Transfer-Encoding: binary');
 
-    // Stream the CSV data
-    exit($params['contents']);
+    // Stream the  data
+    exit($contents);
 });
 
 function applySelectionsToDocument($selections, $contents) {

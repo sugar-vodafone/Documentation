@@ -11,18 +11,25 @@
                 {{/each}}
             </select>
         </li>
+        {{#if edit}}
+        <li style="margin-left: 25px;">
+            <button type="button" class="btn btn-default navbar-btn toggle-highlights" data-toggle="button" aria-pressed="false" autocomplete="off">Toggle Highlights</button>
+        </li>
+        {{/if}}
         {{#if review}}
         <li style="margin-left: 25px;">
             <form name="download" target="_blank" method="post">
                 <input id="contents" name="contents" type="hidden" />
                 <input id="lang" name="language" type="hidden" />
                 <input id="file" name="filename" type="hidden" />
-                <button type="button" class="btn btn-default navbar-btn download-btn1">Download (Client)</button>
+                <button type="button" class="btn btn-default navbar-btn download-btn1">Download</button>
             </form>
         </li>
+        {{!
         <li style="margin-left: 25px;">
             <button type="button" class="btn btn-default navbar-btn download-btn2">Download (Server)</button>
         </li>
+        }}
         {{/if}}
     </ul>
     <ul class="nav navbar-nav navbar-right pages" style="margin-right: 25px;">

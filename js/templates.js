@@ -28,8 +28,10 @@ templates['navmenu'] = template({"1":function(container,depth0,helpers,partials,
 },"2":function(container,depth0,helpers,partials,data) {
     return "selected=\"selected\"";
 },"4":function(container,depth0,helpers,partials,data) {
-    return "        <li style=\"margin-left: 25px;\">\n            <form name=\"download\" target=\"_blank\" method=\"post\">\n                <input id=\"contents\" name=\"contents\" type=\"hidden\" />\n                <input id=\"lang\" name=\"language\" type=\"hidden\" />\n                <input id=\"file\" name=\"filename\" type=\"hidden\" />\n                <button type=\"button\" class=\"btn btn-default navbar-btn download-btn1\">Download (Client)</button>\n            </form>\n        </li>\n        <li style=\"margin-left: 25px;\">\n            <button type=\"button\" class=\"btn btn-default navbar-btn download-btn2\">Download (Server)</button>\n        </li>\n";
+    return "        <li style=\"margin-left: 25px;\">\n            <button type=\"button\" class=\"btn btn-default navbar-btn toggle-highlights\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\">Toggle Highlights</button>\n        </li>\n";
 },"6":function(container,depth0,helpers,partials,data) {
+    return "        <li style=\"margin-left: 25px;\">\n            <form name=\"download\" target=\"_blank\" method=\"post\">\n                <input id=\"contents\" name=\"contents\" type=\"hidden\" />\n                <input id=\"lang\" name=\"language\" type=\"hidden\" />\n                <input id=\"file\" name=\"filename\" type=\"hidden\" />\n                <button type=\"button\" class=\"btn btn-default navbar-btn download-btn1\">Download</button>\n            </form>\n        </li>\n";
+},"8":function(container,depth0,helpers,partials,data) {
     return "class=\"active brian\"";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
@@ -37,13 +39,14 @@ templates['navmenu'] = template({"1":function(container,depth0,helpers,partials,
   return "<div class=\"navbar-header\">\n    <a class=\"navbar-brand\" href=\"#\">Vodafone Documentation</a>\n</div>\n<div id=\"navbar\" class=\"navbar-collapse collapse\">\n    <ul class=\"nav navbar-nav\">\n        <li>\n            <select class=\"fileList\">\n                <option value=\"\">Select which file you'd like to load</option>\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.fileList : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "            </select>\n        </li>\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.review : depth0),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    </ul>\n    <ul class=\"nav navbar-nav navbar-right pages\" style=\"margin-right: 25px;\">\n        <li id=\"edit\" "
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.edit : depth0),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "><a role=\"button\" tabindex=\"0\">Edit</a></li>\n        <li  id=\"selections\" "
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.selections : depth0),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "><a role=\"button\" tabindex=\"0\">Selections</a></li>\n        <li id=\"review\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.edit : depth0),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.review : depth0),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "    </ul>\n    <ul class=\"nav navbar-nav navbar-right pages\" style=\"margin-right: 25px;\">\n        <li id=\"edit\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.edit : depth0),{"name":"if","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "><a role=\"button\" tabindex=\"0\">Edit</a></li>\n        <li  id=\"selections\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.selections : depth0),{"name":"if","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "><a role=\"button\" tabindex=\"0\">Selections</a></li>\n        <li id=\"review\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.review : depth0),{"name":"if","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "><a role=\"button\" tabindex=\"0\">Review</a></li>\n    </ul>\n</div>";
 },"useData":true});
 templates['notfoundview'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {

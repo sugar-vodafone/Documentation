@@ -41,9 +41,9 @@ App.Router = Marionette.AppRouter.extend({
         "": "loadDefaultView",
         "*notFound": "loadNotFoundView"
     },
-    onRoute: function(name, path, args) {
-        console.log(name, path, args);
-    }
+    //onRoute: function(name, path, args) {
+    //    console.log(name, path, args);
+    //}
 });
 
 App.router = new App.Router();
@@ -59,7 +59,7 @@ App.router = new App.Router();
 
 
 App.on("start", function(options) {
-    console.log("Starting App", this, options);
+    console.log("Starting App");
 
     if(Backbone.history)
         Backbone.history.start();
@@ -80,5 +80,7 @@ $( document ).ready(function() {
     //    else
     //        router.navigate("selections");
     //});
-    App.start();
+    setTimeout(function() {
+        App.start();
+    }, 0);
 });

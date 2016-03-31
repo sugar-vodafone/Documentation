@@ -18,11 +18,14 @@ App.module("Edit", function(EditModule, App, Backbone, Marionette, $, _) {
 
     var EditCollection = Backbone.Collection.extend({
         getSelectionsFromServer: function(callback) {
+            var language = App.reqres.request("getLanguage");
+            var filename = App.reqres.request("getFilename");
+
             $.get({
                 url: config.appRoot + "/api/selections",
                 data: {
-                    "language": App.reqres.request("getLanguage"),
-                    "filename": App.reqres.request("getFilename")
+                    "language": language,
+                    "filename": filename
                 },
                 dataType: "json",
                 success: function(result) {
@@ -66,6 +69,13 @@ App.module("Edit", function(EditModule, App, Backbone, Marionette, $, _) {
         initialize: function() {
             this.mouseOffsets = [];
             this.selectionsStore = new EditCollection();
+            this.applier = rangy.createClassApplier("selected");
+            this.highlighter = rangy.createHighlighter(null,"TextRange");
+            this.highlighter.addClassApplier(this.applier);
+
+            App.commands.setHandler("edit:toggleHighlights", function() {
+                this.toggleHighlights();
+            }.bind(this));
         },
         template: Handlebars.templates.editview,
         className: "content col-md-12",
@@ -83,23 +93,28 @@ App.module("Edit", function(EditModule, App, Backbone, Marionette, $, _) {
         },
         handleUserSelection: function() {
             var selectionsStore = this.selectionsStore;
+            var language = App.reqres.request("getLanguage");
+            var filename = App.reqres.request("getFilename");
 
             var selectionData = {
-                "language": App.reqres.request("getLanguage"),
-                "filename": App.reqres.request("getFilename"),
+                "language": language,
+                "filename": filename,
                 "serialized_range": this.serializeSelectedRange(),
                 "body_html": this.getSelectedText(true),
                 "body_text": this.getSelectedText()
             };
 
             if(!this.intersectsExistingRange(selectionData.serialized_range)) {
-                selectionsStore.saveSelectionToServer(selectionData, function (selection) {
-                    console.log(selection);
+                this.selectionsStore.saveSelectionToServer(selectionData, function (selection) {
+                    //console.log(selection);
                     //addRangeToStore(selection.serialized_range);
-                    selectionsStore.set({serialized_range: selection.serialized_range});
+                    if(selection.status == 'Added') {
+                        this.selectionsStore.add(selection);
+                        this.showAlertMessage("Selection saved!");
+                    }
                     //console.log(rangeStore);
                     //showAllHighlights();
-                });
+                }.bind(this));
             }
             else {
                 //showAllHighlights();
@@ -124,10 +139,15 @@ App.module("Edit", function(EditModule, App, Backbone, Marionette, $, _) {
         isValidSelection: function(mouseOffsets) {
             var selX = Math.abs(mouseOffsets['x_down'] - mouseOffsets['x_up']);
             var selY = Math.abs(mouseOffsets['y_down'] - mouseOffsets['y_up']);
+            var highlightsOff = (this.highlighter.highlights.length) ? false : true;
 
             var sel = rangy.getSelection();
             //console.log(selX,selY,sel.nativeSelection.type);
-            if((selX > 5 || selY > 5) && sel.nativeSelection.type == "Range") {
+            if((selX > 5 || selY > 5) && sel.nativeSelection.type == "Range" && !highlightsOff) {
+                alert("You can't make selections while strike-throughs are enabled. Please disable and make your selection again.");
+                return false;
+            }
+            else if((selX > 5 || selY > 5) && sel.nativeSelection.type == "Range") {
                 console.log("valid selection");
                 return true;
             }
@@ -164,6 +184,45 @@ App.module("Edit", function(EditModule, App, Backbone, Marionette, $, _) {
                     break;
                 }
             }
+        },
+        getAllSelectionRanges: function(serialized) {
+            serialized = serialized || false;
+
+            if(serialized) {
+                var ranges = this.selectionsStore.pluck("serialized_range");
+            }
+            else {
+                var ranges = this.selectionsStore.pluck("serialized_range").map(function(serialized_range) {
+                    return rangy.deserializeRange(serialized_range, this.el);
+                }.bind(this));
+            }
+
+            return ranges;
+        },
+        showHighlights: function() {
+            var ranges = this.getAllSelectionRanges();
+            this.highlighter.highlightRanges("selected", ranges);
+        },
+        hideHighlights: function() {
+            this.highlighter.removeAllHighlights();
+        },
+        toggleHighlights: function() {
+            if(this.highlighter.highlights.length)
+                this.hideHighlights();
+            else
+                this.showHighlights();
+        },
+        showAlertMessage: function(msg) {
+            $.bootstrapGrowl(msg, {
+                ele: 'body', // which element to append to
+                type: 'info', // (null, 'info', 'error', 'success')
+                offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+                align: 'center', // ('left', 'right', or 'center')
+                width: 'auto', // (integer, or 'auto')
+                delay: 3000,
+                allow_dismiss: true,
+                stackup_spacing: 10 // spacing between consecutively stacked growls.
+            });
         },
         modelEvents: {
             "change": "render"
@@ -202,7 +261,7 @@ App.module("Edit", function(EditModule, App, Backbone, Marionette, $, _) {
             else {
                 var view = new App.DefaultView();
             }
-console.log(view);
+
             App.contentRegion.show(view);
         }
     });

@@ -19,9 +19,9 @@ App.module("Navigation", function(NavigationModule, App, Backbone, Marionette, $
 
     var NavMenuView = Marionette.ItemView.extend({
         template: Handlebars.templates.navmenu,
-        onRender: function(a) {
-            console.log(a);
-        },
+        //onRender: function(view) {
+        //    console.log(view.model.get("filename"));
+        //},
         serializeData: function() {
             //console.log(App.language, App.filename);
             var page = this.model.get("page");
@@ -31,6 +31,8 @@ App.module("Navigation", function(NavigationModule, App, Backbone, Marionette, $
             fileList.map(function(item) {
                 if(item.language == language && item.filename == filename)
                     item.active = true;
+                else
+                    item.active = false;
             });
 
             var data = {
@@ -39,7 +41,7 @@ App.module("Navigation", function(NavigationModule, App, Backbone, Marionette, $
                 selections: (page == 'selections'),
                 review: (page == 'review')
             };
-            console.log(data);
+            //console.log(data);
             return data;
         },
         getPageFromUrlFragment: function() {
@@ -71,16 +73,18 @@ App.module("Navigation", function(NavigationModule, App, Backbone, Marionette, $
             "fileList": "select.fileList",
             "pages": "ul.nav.pages",
             "clientDownloadBtn": ".download-btn1",
-            "serverDownloadBtn": ".download-btn2"
+            "serverDownloadBtn": ".download-btn2",
+            "toggleHighlightsBtn": ".toggle-highlights"
         },
         modelEvents: {
-            'change': 'render'
+            'all': 'render'
         },
         events: {
             'change @ui.fileList': 'changeSelection',
             'click @ui.pages li': 'changePage',
             'click @ui.clientDownloadBtn': 'downloadFromStream',
-            'click @ui.serverDownloadBtn': 'downloadFromServer'
+            'click @ui.serverDownloadBtn': 'downloadFromServer',
+            'click @ui.toggleHighlightsBtn': 'toggleHighlights'
         },
         changeSelection: function(e) { //rename to loadPage
             console.log(e);
@@ -126,6 +130,9 @@ App.module("Navigation", function(NavigationModule, App, Backbone, Marionette, $
             else {
                 alert('Please select a file');
             }
+        },
+        toggleHighlights: function() {
+            App.commands.execute("edit:toggleHighlights");
         }
     });
 
@@ -134,7 +141,7 @@ App.module("Navigation", function(NavigationModule, App, Backbone, Marionette, $
         var model = new NavMenuModel({
             fileList: config.fileList
         });
-        console.log(model);
+        //console.log(model);
         //console.log(navlist);
         var view = new NavMenuView({
             model: model

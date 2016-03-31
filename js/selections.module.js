@@ -68,7 +68,7 @@ App.module("Selections", function(SelectionsModule, App, Backbone, Marionette, $
         onBeforeShow: function() {
             App.getRegion("modalOverlayRegion").$el.modal("show");
             this.collection.getSelections(function (results) {
-                console.log(results);
+                //console.log(results);
                 this.collection.reset(results);
                 App.getRegion("modalOverlayRegion").$el.modal("hide");
             }.bind(this));
@@ -87,8 +87,7 @@ App.module("Selections", function(SelectionsModule, App, Backbone, Marionette, $
             var confirmDelete = confirm("Are you sure you want to delete this selection?");
             if (confirmDelete) {
                 var selectionId = $(e.currentTarget).data('selectionId');
-                deleteSelection(selectionId, function(result) {
-                    //                console.log("deleted", result, this);
+                this.collection.deleteSelection(selectionId, function(result) {
                     this.collection.remove(selectionId);
                 }.bind(this));
             } else {
@@ -123,7 +122,7 @@ App.module("Selections", function(SelectionsModule, App, Backbone, Marionette, $
         }
     });
 
-    var controller = new SelectionsController();console.log(controller);
+    var controller = new SelectionsController();
 
     var SelectionsRouter = new App.Router({
         controller: controller,
@@ -131,11 +130,5 @@ App.module("Selections", function(SelectionsModule, App, Backbone, Marionette, $
             "selections": "loadSelectionsView",
             "selections/:language/:filename": "loadSelectionsView"
         }
-    });
-
-    this.on("start", function() {
-        console.log(SelectionsModule);
-        console.log("Module Started", this);
-//    this.actionsCollection = new ActionsCollection();
     });
 });
