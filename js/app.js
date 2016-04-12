@@ -24,7 +24,7 @@ App.DefaultView = Marionette.ItemView.extend({
 App.Controller = Marionette.Object.extend({
     loadDefaultView: function() {
         //default to edit view
-        router.navigate("edit", {trigger: true});
+        App.router.navigate("edit", {trigger: true});
     },
     loadNotFoundView: function() {
         console.log("route not found");

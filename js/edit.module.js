@@ -207,10 +207,12 @@ App.module("Edit", function(EditModule, App, Backbone, Marionette, $, _) {
             this.highlighter.removeAllHighlights();
         },
         toggleHighlights: function() {
+            App.getRegion("modalOverlayRegion").$el.modal("show");
             if(this.highlighter.highlights.length)
                 this.hideHighlights();
             else
                 this.showHighlights();
+            App.getRegion("modalOverlayRegion").$el.modal("hide");
         },
         showAlertMessage: function(msg) {
             $.bootstrapGrowl(msg, {

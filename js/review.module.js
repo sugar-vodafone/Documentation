@@ -98,15 +98,7 @@ App.module("Review", function(ReviewModule, App, Backbone, Marionette, $, _) {
             this.removeSelectionsFromPage();
 
             //TODO finish
-            var patterns = [
-                //{'search': /\\"/g, 'replace': '"'},
-                //{'search': /\\'/g, 'replace': "'"},
-                {'search': /SugarCRM/g, 'replace': 'VodafoneCRM'},
-                {'search': /Sugar/g, 'replace': 'VodafoneCRM'}
-            ];
-
-            patterns.forEach(function(pattern) {
-                //foo.replace(/<br>/g,"\n");
+            config.patterns.forEach(function(pattern) {
                 //console.log(this.el, pattern);
                 this.el.innerHTML = this.el.innerHTML.replace(pattern.search, pattern.replace);
             }.bind(this));
