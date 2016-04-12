@@ -132,7 +132,8 @@ App.module("Navigation", function(NavigationModule, App, Backbone, Marionette, $
             }
         },
         toggleHighlights: function() {
-            App.commands.execute("edit:toggleHighlights");
+            //App.commands.execute("edit:toggleHighlights");
+            alert("Feature temporarily disabled");
         }
     });
 

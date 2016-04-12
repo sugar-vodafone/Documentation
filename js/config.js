@@ -28,7 +28,7 @@ var config = {
         //{'search': /\\"/g, 'replace': '"'},
         //{'search': /\\'/g, 'replace': "'"},
         //{'search': /SugarCRM/g, 'replace': 'VodafoneCRM'},
-        //{'search': /Sugar/g, 'replace': 'VodafoneCRM'}, 
+        //{'search': /Sugar/g, 'replace': 'VodafoneCRM'},
         {'search': /(?!<a[^>]*>)(Sugar(CRM)?)(?![^<]*<\/a>)/g, 'replace': 'VodafoneCRM'},
         {'search': /href="#([^A-Z"]*)/g, 'replace': 'href=\"#'}, //remove guids from inline anchor tags
         {'search': /id="([^A-Z"]*)/g, 'replace': 'id=\"'}, //remove guids from inline anchor ids
