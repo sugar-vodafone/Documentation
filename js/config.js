@@ -12,6 +12,7 @@ var config = {
         {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Administration_Guide'},
         {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Application_Guide'},
         {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Portal_Deployment_User_Guide'},
+	{'language': 'English', 'filename': 'Sugar_Enterprise_7.7_Portal_User_Guide'},
         {'language': 'Italian', 'filename': 'MS_Excel_Plug-in_Installation_Guide'},
         {'language': 'Italian', 'filename': 'MS_Excel_Plug-in_User_Guide'},
         {'language': 'Italian', 'filename': 'MS_Outlook_Plug-in_Installation_Guide_2.x'},
