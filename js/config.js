@@ -12,7 +12,7 @@ var config = {
         {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Administration_Guide'},
         {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Application_Guide'},
         {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Portal_Deployment_User_Guide'},
-	{'language': 'English', 'filename': 'Sugar_Enterprise_7.7_Portal_User_Guide'},
+	    {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Portal_User_Guide'},
         {'language': 'Italian', 'filename': 'MS_Excel_Plug-in_Installation_Guide'},
         {'language': 'Italian', 'filename': 'MS_Excel_Plug-in_User_Guide'},
         {'language': 'Italian', 'filename': 'MS_Outlook_Plug-in_Installation_Guide_2.x'},
@@ -51,6 +51,11 @@ var config = {
         {'search': /href="(http:\/\/dock\.sugarcrm\.net\/dock\/cache\/preview\/64e62fbf-98fd-45bb-16bd-54e38ae38f47\/02_Documentation\/02_Mobile_Solutions\/SugarCRM_Mobile\/SugarCRM_Mobile_for_iOS_User_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="SugarCRM_Mobile_for_iOS_User_Guide.html#$2"'},
         //Sugar_Enterprise_7.6_Portal_Deployment_User_Guide.html
         {'search': /href="(http:\/\/support\.sugarcrm\.com\/02_Documentation\/01_Sugar_Editions\/02_Sugar_Enterprise\/Sugar_Enterprise_7\.6\/Portal_Deployment_User_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Portal_Deployment_User_Guide.html#$2"'},
+        //******************************************************
+        //Sugar_Enterprise_7.6_Portal_User_Guide.html
+        {'search': /href="(http:\/\/support\.sugarcrm\.com\/02_Documentation\/01_Sugar_Editions\/02_Sugar_Enterprise\/Sugar_Enterprise_7\.6\/Portal_User_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Portal_User_Guide.html#$2"'},
+        {'search': /href="(http:\/\/support\.sugarcrm\.com\/Documentation\/Sugar_Versions\/7\.6\/Ent\/Portal_User_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Portal_User_Guide.html#$2"'},
+        //******************************************************
         //MS_Word_Plug-in_Installation_Guide.html
         {'search': /href="(http:\/\/support\.sugarcrm\.com\/Documentation\/Plug-ins\/MS_Word_Plug-in\/MS_Word_Plug-in_Installation_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="MS_Word_Plug-in_Installation_Guide.html#$2"'},
         //MS_Excel_Plug-in_Installation_Guide.html
