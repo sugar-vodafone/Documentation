@@ -118,7 +118,12 @@ App.module("Edit", function(EditModule, App, Backbone, Marionette, $, _) {
             }
             else {
                 //showAllHighlights();
-                alert("You've already selected this range!");
+                var existingRange = this.getIntersectingRange(selectionData.serialized_range);
+                var selectedText = existingRange.text();
+                this.showHighlights([existingRange]);
+                //console.log(selectedText);
+                alert("You've already selected this range!\n\n" + selectedText);
+                this.hideHighlights();
             }
         },
         getSelectedRange: function() {
@@ -199,8 +204,8 @@ App.module("Edit", function(EditModule, App, Backbone, Marionette, $, _) {
 
             return ranges;
         },
-        showHighlights: function() {
-            var ranges = this.getAllSelectionRanges();
+        showHighlights: function(ranges) {
+            ranges = ranges || this.getAllSelectionRanges();
             this.highlighter.highlightRanges("selected", ranges);
         },
         hideHighlights: function() {

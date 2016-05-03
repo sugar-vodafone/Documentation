@@ -37,7 +37,7 @@ var config = {
         //Sugar_Enterprise_7.6_Application_Guide.html
         {'search': /href="(http:\/\/support\.sugarcrm\.com\/Documentation\/Sugar_Versions\/7\.6\/Ent\/Application_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Application_Guide.html#$2"'},
         {'search': /href="(http:\/\/support\.sugarcrm\.com\/02_Documentation\/01_Sugar_Editions\/02_Sugar_Enterprise\/Sugar_Enterprise_7\.6\/Application_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Application_Guide.html#$2"'},
-        {'search': /href="(http:\/\/support\.sugarcrm\.com\/support\.sugarcrm\.com\/02_Documentation\/01_Sugar_Editions\/04_Sugar_Professional\/Sugar_Professional_7.6\/Application_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Application_Guide.html#$2"'},
+        {'search': /href="(http:\/\/support\.sugarcrm\.com\/support\.sugarcrm\.com\/02_Documentation\/01_Sugar_Editions\/04_Sugar_Professional\/Sugar_Professional_7\.6\/Application_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Application_Guide.html#$2"'},
         {'search': /href="(http:\/\/support\.sugarcrm\.com\/02_Documentation\/01_Sugar_Editions\/01_Sugar_Ultimate\/Sugar_Ultimate_7\.1\/Application_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Application_Guide.html#$2"'},
         {'search': /href="(http:\/\/support\.sugarcrm\.com\/02_Documentation\/01_Sugar_Editions\/01_Sugar_Ultimate\/Sugar_Ultimate_7\.5\/Application_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Application_Guide.html#$2"'},
         {'search': /href="(http:\/\/support\.sugarcrm\.com\/02_Documentation\/01_Sugar_Editions\/01_Sugar_Ultimate\/Sugar_Ultimate_7\.1\/Application_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="Sugar_Enterprise_7.6_Application_Guide.html#$2"'},
@@ -64,6 +64,6 @@ var config = {
         //MS_Outlook_Plug-in_User_Guide_2.x.html
         {'search': /href="(http:\/\/support\.sugarcrm\.com\/02_Documentation\/03_Plug-ins\/MS_Outlook_Plug-in\/01_MS_Outlook_Plug-in_User_Guide[^"]*[\/|#](\w+))/g, 'replace': 'href="MS_Outlook_Plug-in_User_Guide_2.x.html#$2"'},
         //MS_Outlook_Plug-in_Installation_Guide_2.x.html
-        {'search': /href="(http:\/\/support\.sugarcrm\.com\/Documentation\/Plug-ins\/MS_Outlook_Plug-in\/MS_Outlook_Plug-in_Installation_Guide_2.x[^"]*[\/|#](\w+))/g, 'replace': 'href="MS_Outlook_Plug-in_Installation_Guide_2.x.html#$2"'},
+        {'search': /href="(http:\/\/support\.sugarcrm\.com\/Documentation\/Plug-ins\/MS_Outlook_Plug-in\/MS_Outlook_Plug-in_Installation_Guide_2\.x[^"]*[\/|#](\w+))/g, 'replace': 'href="MS_Outlook_Plug-in_Installation_Guide_2.x.html#$2"'},
     ]
 };
