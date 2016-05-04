@@ -11,6 +11,8 @@ var config = {
         {'language': 'English', 'filename': 'SugarCRM_Mobile_for_iOS_User_Guide'},
         {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Administration_Guide'},
         {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Application_Guide'},
+        {'language': 'English', 'filename': 'New_Sugar_Enterprise_7.6_Administration_Guide'},
+        {'language': 'English', 'filename': 'New_Sugar_Enterprise_7.6_Application_Guide'},
         {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Portal_Deployment_User_Guide'},
 	    {'language': 'English', 'filename': 'Sugar_Enterprise_7.6_Portal_User_Guide'},
         {'language': 'Italian', 'filename': 'MS_Excel_Plug-in_Installation_Guide'},
@@ -23,7 +25,8 @@ var config = {
         {'language': 'Italian', 'filename': 'SugarCRM_Mobile_for_iOS_User_Guide'},
         {'language': 'Italian', 'filename': 'Sugar_Enterprise_7.6_Administration_Guide'},
         {'language': 'Italian', 'filename': 'Sugar_Enterprise_7.6_Application_Guide'},
-        {'language': 'Italian', 'filename': 'Sugar_Enterprise_7.6_Portal_Deployment_User_Guide'}
+        {'language': 'Italian', 'filename': 'Sugar_Enterprise_7.6_Portal_Deployment_User_Guide'},
+        {'language': 'Italian', 'filename': 'Sugar_Enterprise_7.6_Portal_User_Guide'}
     ],
     'patterns': [ //str.replace(re, "$2, $1");
         //{'search': /(?!<a[^>]*>)(Sugar(CRM)?)(?![^<]*<\/a>)/g, 'replace': 'VodafoneCRM'},
