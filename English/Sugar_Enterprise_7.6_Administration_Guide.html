@@ -6197,4 +6197,106 @@
     <li>The Process Definitions module may be marked as hidden in your user preferences which will prevent the module tab from being displayed. Navigate to your user profile (upper right of Sugar), click the Advanced tab, and check the Layout Options section. If you see the Process Definitions module in the Hide Modules list, simply move it to the Display Modules list and save. For more information on hiding and displaying modules, please refer to the Layout Options section of the Getting Started documentation.</li>
     <li>The administrator may have disabled the Process Definitions module for your entire Sugar instance. Reach out to your Sugar administrator to have the Process Definitions module displayed. For more information on displaying and hiding modules throughout Sugar, please refer to the Developer Tools documentation in the Administration guide.</li>
 </ul>
-<p></p>
+<h2 id="af1976-0a77-5077-2199-5606f9639088_Dropdown_Editor">Dropdown Editor</h2>
+<div>
+    <p>The Dropdown Editor allows administrators to view, modify, and create dropdown lists which can be added as fields in Sugar. Since dropdown lists are not module specific, they are stored and managed through the Dropdown Editor. Please note that the dropdown list can only be associated to a Dropdown, Multiselect, and Radio type field via Admin &gt; Studio. For more information on associating dropdown lists to the different field types, please refer to the <a href="#b08267-09fc-6a2c-433f-5606f925d54c_Fields">Studio</a> documentation.</p>
+    <div>
+        <p>You can restrict which dropdown values are available to users based on their roles. For more information about role-based visibility, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Administration_Guide/Developer_Tools/#Editing_Role-Based_Availability">Editing Role-Based Availability</a> section of this page.</p>
+    </div>
+    <p><strong>Note:</strong> Certain dropdown lists cannot be edited via the Dropdown editor as they are controlled by a separate area (e.g. Contract Types, Releases, etc.) of the Admin page. These include dropdown lists for the <a href="#id-65bbe5f0-8524-ae05-5303-5606f96f3721">Forecasting</a>, <a href="#id-65b91033-7812-09b3-de0b-5606f9307e82">Bug Tracker</a>, <a href="#id-65bd5af6-150d-ccd1-d8d3-5606f9fb8dd4">Contracts</a>, and <a href="#id-65b7b3d6-133b-168f-8d99-5606f93744b2">Products and Quotes</a> modules. Please refer to the appropriate sections of the Administration guide for more information regarding the fields and how they can be edited.</p>
+    <h3 id="af1976-0a77-5077-2199-5606f9639088_Adding_Dropdown_Lists">Adding Dropdown Lists</h3>
+    <p>Dropdown lists can be created at any time and added to a Dropdown type field via <a href="#b08267-09fc-6a2c-433f-5606f925d54c_Field_Types">Studio</a>. When creating a list, please keep in mind that this list is not module specific, so be sure to properly name your list and any dropdown options to avoid any confusion in the future. </p>
+    <div>
+        <p>If desired, you can restrict which dropdown values are available to users based on their roles. For more information about role-based visibility, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Administration_Guide/Developer_Tools/#Editing_Role-Based_Availability">Editing Role-Based Availability</a> section of this page.</p>
+    </div>
+    <p>Use the following steps to create a dropdown list via Dropdown Editor:</p>
+    <ol>
+        <li>Navigate to Admin &gt; Dropdown Editor.</li>
+        <li>Click the Add Dropdown button above the list of existing dropdown lists.
+            <br><img src="http://support.sugarcrm.com/files/b0d12085-83bd-645b-385a-5503001201af.png" alt="add_dropdown_button_67_dev" width="183" height="174"></li>
+        <li>Enter in a name for your dropdown list on the Name field (e.g. "account_manager_list").
+            <ul>
+                <li><strong>Note: </strong>The name must be alphanumeric and use the underscore character for spaces.</li>
+            </ul>
+            <br><img src="http://support.sugarcrm.com/files/4cf2a8cc-7bf1-32fd-4bd7-550300db8b48.png" alt="Developer_Tools_Dropdown_Editor_Name" width="222" height="164"></li>
+        <li>To create the items that will appear in your dropdown list, enter an "Item Name" and a "Display Label". Click "Add" once you have populated both fields to add the value to the dropdown list.
+            <ul>
+                <li>The item name is the backend system name for the list item and must be alphanumeric. An underscore or a period can be used for the item name.</li>
+                <li>The display label defines what will be displayed within the actual dropdown. Please note that there is no character restrictions when entering the display label. Click "Add" once you have populated both fields to add the value to the dropdown list.</li>
+            </ul>
+            <br><img src="http://support.sugarcrm.com/files/a115946d-0cc4-0f4f-bd11-55030005b488.png" alt="Add_row_dd_edit_67" width="371" height="159"></li>
+        <li>Once all values have been added to your dropdown list, you can click one of the sort options to rearrange the values as desired. Lists can be sorted alphabetically in ascending or descending order based on the display label. You can also sort the list manually by dragging and dropping the values up-and-down the list.
+            <br><img src="http://support.sugarcrm.com/files/3bbc5737-e5e9-98b5-6b1f-550300cfbc15.png" alt="sort_buttons_67_dd_edit" width="405" height="114"></li>
+        <li>
+            <p>Click "Save" at the top of the screen to complete and add your dropdown list. You will be directed back to the main dropdown editor page once the save completes.
+                <br><img src="http://support.sugarcrm.com/files/261bf151-f840-b701-85d6-5503006948a2.png" alt="Save_button_dd_edit_67_create" width="260" height="129"></p>
+        </li>
+    </ol>
+    <h3 id="af1976-0a77-5077-2199-5606f9639088_Viewing_Dropdown_Lists">Viewing Dropdown Lists</h3>
+    <p>The Dropdown Editor displays all existing dropdown lists in two separate sections (Dropdowns list, Dropdown Editor) on the page. The Dropdowns list to the left of the page displays the dropdown lists in alphabetical order. The Dropdown Editor tab displays the dropdown lists in columns and allows you to view more of the lists at once instead of scrolling down a single list. <img src="http://support.sugarcrm.com/files/b2c39c56-9e01-ecc3-9f7f-550300b361d8.png" alt="DD_lists_67_view" width="621" height="209"></p>
+    <p>Once you locate the dropdown list you are looking for, click the list's name to open the Edit Dropdown tab where you can view and edit the list. The Edit Dropdown tab displays the name, language dropdown, and the list of item names and display labels. The list's order here matches the order they will be displayed when using the dropdown in Sugar records. Reorder the list by dragging and dropping the items into the desired positions.
+        <br><img src="http://support.sugarcrm.com/files/577af237-9978-8e74-7412-5503005e488c.png" alt="dd_view_67" width="275" height="308"></p>
+    <div>
+        <p>If your organization uses Sugar in languages other than English, Sugar can display translated dropdown lists for each language used. For example, Sugar will display French dropdown items when a user is logged into Sugar in French. You must provide the translations for each language by specifying display labels for each dropdown item. First, finalize your list's items by <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Administration_Guide/Developer_Tools/#Editing_Dropdown_Lists">adding or removing items</a> since the item names (a.k.a. database values) and order of items will be consistent across all languages. Choose the desired language in the Language dropdown above the list. Then, click the pencil icon for each item and enter a translated display label. When all labels have been translated, click "Save" to preserve your changes. After saving, the list will automatically be displayed in English, but you can change the Language dropdown again to check your labels.
+            <br><img src="http://support.sugarcrm.com/files/35897c96-8504-c63b-d03a-5503005b1513.png" alt="lang_list_dd_67" width="256" height="211"></p>
+    </div>
+    <h3 id="af1976-0a77-5077-2199-5606f9639088_Editing_Dropdown_Lists">Editing Dropdown Lists</h3>
+    <p>Dropdown lists can easily be modified via the Dropdown Editor by selecting the specific dropdown list which opens the edit layout. You can reorder the items in the list, add new values, remove unnecessary values, change the display label of a value, or change the display label language.</p>
+    <div>
+        <p>If desired, you can restrict which dropdown values are available to users based on their roles. For more information about role-based visibility, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Administration_Guide/Developer_Tools/#Editing_Role-Based_Availability">Editing Role-Based Availability</a> section of this page.</p>
+    </div>
+    <p>Please note that the name of the dropdown list cannot be changed once created. Also, dropdown lists cannot be deleted since they can span multiple modules in Sugar and cause important data to be lost if removed in error. Once the necessary modifications have been made, click "Save" on the upper right to preserve the changes made.</p>
+    <p>To sort the list alphabetically, you can simply click the Sort Ascending or Sort Descending button on the bottom left of the tab view. Please note that the sorting is based on the display label. You can also reorder the items in your list, by dragging and dropping the items into the desired position.
+        <br><img src="http://support.sugarcrm.com/files/c7804615-50c8-0289-84aa-550300ebe8bb.png" alt="DropdownList_ChangingOrder" width="469" height="389"></p>
+    <p>To add a new value, enter in an item name and corresponding display label below the list of existing values then click "Add". Please note that the item name is the back-end system name and must be alphanumeric without any special characters other than an underscore or a period. The text in the display label defines how the value will be displayed in the dropdown list when viewed in the user interface. Please note that this there is no character restriction for the display label.</p>
+    <p><img src="http://support.sugarcrm.com/files/26f09a07-3de2-1835-144d-550300e37287.png" alt="add_row_dd_list_67" width="392" height="164"></p>
+    <p>To remove a value from the list, click the Minus icon to the far right of the item row. Once deleted, the item will show a strike through and will be removed from the list once saved.</p>
+    <p><img src="http://support.sugarcrm.com/files/82d723f2-b964-35de-75c0-5503009ece2a.png" alt="delete_row_67_dd" width="396" height="124"></p>
+    <p>The item name of a dropdown value cannot be edited, but you can update the display label via the Dropdown Editor. Simply locate the value in the list then click the Pencil icon to the far right of the item row. Enter in the new value into the open text box then click anywhere on the page to close the edit.
+        <br><img src="http://support.sugarcrm.com/files/e4045306-b23f-e8f2-d35d-5503007f035a.png" alt="Editing_labels_in_DD_editor" width="391" height="119"></p>
+    <h4 id="af1976-0a77-5077-2199-5606f9639088_Editing_Sales_Stages">Editing Sales Stages</h4>
+    <div>
+        <p>The Revenue Line Items module contains two fields that function unlike other fields in Sugar. When the Sales Stage dropdown field is updated, the corresponding probability is automatically populated in the Probability (%) field. This is a unique function to the Revenue Line Items module. These two fields use the two dropdown lists, "sales_stage_dom" and "sales_probability_dom". Both dropdown lists have the same item name for all values but different display labels. The sales_stage_dom list is associated to the Sales Stage field and displays the various sales stages (e.g. prospecting, qualification, closed won, etc.). The sales_probability_dom list is associated to the Probability (%) field and displays the corresponding probability value (e.g. 10, 20, 100, etc.) for each sales stage.</p>
+        <p>When any changes are made to the sales_stage_dom list, you must consider the sales_probability_dom list as well to ensure the relationship between the two fields remain intact. For example, if you add a new sales stage (e.g. Item Name: "review_stage", Display Label: "Review Stage") to the sales_stage_dom list then you must add a corresponding probability (e.g. Item Name: "review_stage", Display Label: "50") to the sales_probability_dom list in order for it to populate properly in the revenue line item. The two lists' item names and order must match.</p>
+        <p>The Opportunities module's Status field uses the sales_status_dom list . Modifying this list is not recommended as the values in this dropdown are tied to the Revenue Line Item module's Sales Stage field. Making changes to this dropdown list's item names via code or Studio can cause unexpected behavior. For more information regarding the Status field, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Opportunities">Opportunities</a> documentation. </p>
+        <p><strong>Note</strong>: The dropdown lists "sales_stage_dom" and "sales_probability_dom" must have "Closed Won" and "Closed Lost" as item names in order for the Forecasts module to function correctly. Please ensure any changes to these lists does not remove or change the item name for these two options. </p>
+        <p>For sales_stage_dom list:
+            <br><img src="http://support.sugarcrm.com/files/e4561ce1-abdb-6b9c-6b8b-550300031ee4.png" alt="Sales_stage_dom_list" width="400" height="230">
+            <br>For sales_probability_dom list:
+            <br><img src="http://support.sugarcrm.com/files/b054571e-6f7b-23bc-6c5f-550300caab83.png" alt="Sales_probability_dom_list" height="223" width="326"></p>
+        <p>For sales_status_dom list:
+            <br><img src="http://support.sugarcrm.com/files/5c3e9964-6aab-fb6d-f332-55030005d85e.png" alt="dev_tools_sales_status_dom" width="306" height="237"></p>
+        <p>Users can create similar logic for custom fields using Sugar Logic in <a href="#b08267-09fc-6a2c-433f-5606f925d54c_Using_Sugar_Logic">Studio</a>.</p>
+    </div>
+    <h4 id="af1976-0a77-5077-2199-5606f9639088_Editing_Time_Intervals">Editing Time Intervals</h4>
+    <p>The "After Time Elapsed" workflow triggers after a specified period of time has elapsed from when a record save occurs in Sugar. For more information on "After Time Elapsed" workflows, please refer to the <a href="#id-65b64b62-38fb-df59-ef08-5606f953f378">Workflow Management</a> documentation. When creating the conditions for the workflow, you have the option to specify the time interval (e.g. 0 hours, 4 hours, 1 day, 1 week, etc.) used by the system to execute the workflow. The available time interval values can easily be modified via the Dropdown Editor.</p>
+    <p>The Dropdown Editor contains the "tselect_time_dom" list, which allows administrators to configure the time intervals used for time elapsed workflows. To add new time intervals to the dropdown list, simply enter the "Item Name" and "Display Label", keeping in mind that the item name must display the number of seconds corresponding to the new time interval. The display label value should have the time as it relates to minutes, hours, days, etc. For example, if you are adding 2 hours to the time interval list, the item name value will be "7200" and the display label will show "2 hours".</p>
+    <p><img src="http://support.sugarcrm.com/files/b887526a-0a27-f7a6-c5b9-55028883e664.png" alt="Workflow_TimeIntervalDropdown_Edit" height="193" width="288"></p>
+    <div>
+        <h4 id="af1976-0a77-5077-2199-5606f9639088_Editing_Role-Based_Availability">Editing Role-Based Availability</h4>
+        <p>You can restrict which options are available for a user to select when he or she is editing records based on the user's role. When editing a particular dropdown list, the Roles dropdown appearing on the top right contains all existing roles in the Sugar application. The Default role-list allows admins to add, remove, or reorder options within a dropdown list. By default, none of the other Sugar roles have customized lists, so changes made to the Default role-list will automatically be copied to the other role-lists upon save. This means that as long as no role-list are customized here, all users will continue to see the dropdown options and order matching the Default role-list.</p>
+        <p><strong>Note</strong>: It is recommended to assign each user to a maximum of one role. Users belonging to multiple roles which each have customized role-views may experience unexpected behavior when using record views. For more information about roles, please refer to the <a href="#id-659e5065-4db0-5206-13c6-5606f994b8b6">Role Management</a> documentation.</p>
+        <p>If you wish to restrict certain roles to use a modified list of options when editing records, select the desired role from the Roles dropdown to make changes specific to that role (e.g. Marketing Administrator).
+            <br><img src="http://support.sugarcrm.com/files/2f8e0798-3b11-6f41-34b5-5503005c3aee.png" alt="RBV_DD_roleSelect" width="216" height="128"></p>
+        <p>When viewing a Sugar role's role-list (e.g. Marketing Administrator), you have the option to disable, enable, or reorder the existing options. Options cannot be added or deleted via any role-list except "Default". Drag and drop an option in order to change its position in the role-list's options list. To disable an option, uncheck the box on the right of the option's row. Doing so will prevent the option from appearing in the dropdown when a user belonging to this role is editing or creating a record. Once an option is disabled, it will appear greyed out with a strike-through. When the desired changes have been made, click "Save &amp; Deploy".
+            <br><strong>Note</strong>: Each role's role-list must have at least one enabled option.
+            <br><img src="http://support.sugarcrm.com/files/9ca576f3-b352-dd6b-9b93-55030087904c.png" alt="RBV_DD_disableOption" width="420" height="133"></p>
+        <p>Once you have saved and deployed a modification to a role-list, it is considered customized and will display an asterisk (*) next to the role's name in the Roles dropdown. Reordering options on the Default role-list will no longer have any affect on customized role-lists. However, adding an option, deleting an option, or changing an option's display label on the Default role-list will add, remove, or alter the option for all role-lists including customized role-lists.
+            <br><img src="http://support.sugarcrm.com/files/d32e704c-b9e3-89d3-51bd-550300409b33.png" alt="RBV_DD_customized" width="250" height="88"></p>
+        <p><strong>Note</strong>: Users will be able to view all dropdown values regardless of role restrictions when viewing records. This means if a record has a dropdown value set to which a user has a role-based restriction, he or she will still be able to view the value.</p>
+        <p><strong>Note</strong>: Role-based customizations to dropdown lists are included when exporting customizations from Studio. For more information, please refer to the <a href="#b08267-09fc-6a2c-433f-5606f925d54c_Exporting_Customizations">Studio</a> and <a href="#b36d7b-782b-90e7-2634-5606f97d8563_Installing_Role-Based_Customizations">Module Loader</a> documentation.</p>
+    </div>
+</div>
+<h2 id="af1976-0a77-5077-2199-5606f9639088_Rename_Modules">Rename Modules</h2>
+<div>
+    <p>Depending on your business needs, it may be necessary to alter the display label to make the module's name (e.g. Contacts, Accounts, etc.) align to your various business components. Administrators can easily rename modules via Admin &gt; Rename Modules. When editing a name, you are given the option to update both the singular and plural version of the word. This change will be reflected globally across Sugar so that every use of the given module name is updated to your preference, seamlessly to all users. You can also use the language dropdown list at the top of the page to rename the modules to a language other than English.</p>
+    <p>The following steps cover renaming the Contacts module as an example:</p>
+    <ol>
+        <li>Navigate to Admin &gt; Rename Modules.</li>
+        <li>Locate the module you wish to change and click the Pencil icon to the left of the module's name.
+            <br><img src="http://support.sugarcrm.com/files/bb786d08-0ec4-d6d9-2ff8-550300823a66.png" alt="rn_mod_67" width="266" height="304"></li>
+        <li>Enter in a new singular and plural name for the module then click the Pencil icon again to close the text boxes.
+            <br><img src="http://support.sugarcrm.com/files/9236cd82-5583-0242-866e-55030081f0e6.png" alt="RenameModules_Save" width="277" height="269"></li>
+        <li>Click "Save" to deploy your changes across your instance.</li>
+    </ol>
+</div>
