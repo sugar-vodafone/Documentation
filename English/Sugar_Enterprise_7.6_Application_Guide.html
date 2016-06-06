@@ -18313,4 +18313,302 @@
     <p>Administrator users have the ability to control what fields are available on the detail view which will affect whether the Web icon appears on a record's detail view. For more information on using Studio to configure mobile layouts, refer to the Mobile Layouts section within Studio documentation in the <a href="http://support.sugarcrm.com/02_Documentation/01_Sugar_Editions/">Administration Guide</a> specific to your version and edition of Sugar.</p><strong>Note</strong>: The Web icon may not be available from a record list when the maximum number of actions is exceeded for that record. In this situation, tap the record's name to open it in detail view where all of the valid actions will be available.
     <h2 id="f0b30-e7bf-46d6-b47b-551b22305121_Refreshing_Pages">Refreshing Pages</h2>
     <p>During the course of using mobile browser, you may wish to refresh your home page, a list view, or a list of related records in order to see any updates made since you initially loaded the page. To do this, simply drag the page down until the Refresh icon appears. Releasing will cause the current list of records to be refreshed. <br /><img src="http://support.sugarcrm.com/files/a01e154a-79b7-fdfa-fb52-55028c0e5698.png" alt="" width="279" height="301" /></p>
-    <h2 id="f0b30-e7bf-46d6-b47b-551b22305121_"></h2></div>
+    <h2 id="f0b30-e7bf-46d6-b47b-551b22305121_"></h2>
+</div>
+<h1 id="id-65fc3478-55e3-77d0-7aae-5606f91e5827">Processes</h1>
+<div>
+    <h2 id="fc3478-55e3-77d0-7aae-5606f91e5827_Overview">Overview</h2>
+    <p>Sugar's Processes module is the user-facing portal to <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Administration_Guide/Process_Author">Sugar Process Author™</a>, a business process management tool which enables administrators to streamline common business processes by managing approvals, sales processes, call triaging, and more. A business process is a set of logically related tasks that are performed in order to achieve a specific organizational goal. It presents all of the tasks that must be completed in a simplified and streamlined format.</p>
+    <p>Sugar Process Author empowers Sugar administrators to automate vital business processes for their organization. Some examples of business processes that can be automated using Sugar Process Author include invoice approvals, lead routing, customer service case routing, and automated reminders and escalations. This documentation will cover how to use the Processes module, as well as the various actions and options available from within the module. For more information on how administrators can create and configure processes, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Administration_Guide/Process_Author/">Process Author</a> documentation in the Administration Guide.</p>
+    <p><strong>Note</strong>: Sugar Process Author is exclusive to Enterprise and Ultimate editions of Sugar 7.6.x and later.</p>
+    <h2 id="fc3478-55e3-77d0-7aae-5606f91e5827_Viewing_Processes">Viewing Processes</h2>
+    <p>There are two places where regular users can view processes in Sugar: the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Via_Dashlet">Processes dashlet</a> and the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Via_List_View">Processes module list view</a>. The Processes module is the only Process Author module that is visible to regular users. From the Processes dashlet and module list view, you will only see running processes if there is anything for you to approve or review.</p>
+    <h3 id="fc3478-55e3-77d0-7aae-5606f91e5827_Viewing_Via_Dashlet">Viewing Via Dashlet</h3>
+    <p>All users who may be engaged in a process must place the Processes dashlet on their home screens. Process users will not receive an email notification when an activity is ready for them (unless the administrator has explicitly configured this). Instead, open, running processes waiting to be acted upon by the logged-in user will be listed in the Processes dashlet. This dashlet was designed to make it easy for users to know when it is their turn to participate in a process and to take the appropriate action.</p>
+    <p><strong>Note: </strong>Users (including administrators) will see only the processes that immediately require their attention in the Processes dashlet.</p>
+    <p>To add a Processes dashlet, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/User_Interface/Intelligence_Pane/#Adding_Dashlets">Adding Dashlets</a> section of the Intelligence Pane documentation, choosing "Processes" from the Add a Dashlet page.
+        <br><img src="http://support.sugarcrm.com/files/1e23244d-5b3a-6fb7-3c00-5503058602e8.png" alt="adddash-process" width="542" height="40"></p>
+    <p>After saving the dashlet and its containing dashboard, the dashlet will offer several Process-specific filtering tools:
+        <br><img src="http://support.sugarcrm.com/files/87c32126-baef-ff5e-0159-5503021f24a5.png" alt="pro-dash" width="291" height="250"></p>
+    <ul>
+        <li><strong>Current</strong> : Click on this button to view all processes that are running within the expected timeframe.</li>
+        <li><strong>Overdue</strong> : Click on this button to view all processes that have a due date in the past. The label "Overdue" and the due date will be displayed adjacent to the Process description.</li>
+        <li><strong>My Processes</strong> : Enable this tab to view only the running processes upon which the logged-in user must act. To execute the Process, click on the name of the process. Please note that admin users can not see processes running for other users via the dashlet. To access the system's exhaustive list of running and completed processes, please refer to the Process Management section of the Administration guide.</li>
+        <li><strong>Self Service Processes</strong> : Enable this tab to view only the running processes in the queue to be claimed by a user. Self-Service processes are configured inside the User Activity element settings of the related process definition.</li>
+        <li><strong>Process Description </strong>: Running processes are displayed in list view format with descriptive fields including the unique process number, the name of the affected Sugar record, the process title, the responsible user's name, and the label of the relevant process step.</li>
+        <li><strong>Due Date </strong>: When a due date exists it will appear adjacent to the process description.</li>
+    </ul>
+    <p>To execute a process from the Processes dashlet, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Executing_Processes">Executing Processes</a> section of this documentation.</p>
+    <h3 id="fc3478-55e3-77d0-7aae-5606f91e5827_Viewing_Via_List_View">Viewing Via List View</h3>
+    <p><span>The Processes list view displays all running processes that require the logged-in user to take approve/reject or view/edit action and that meet the current search criteria. Users will not see processes for any other user – even if the other user is a direct report or a member of the same team. To access the list view, simply click the Processes module tab. The list view shows key process fields, you can click the task's name to open the record view. </span></p>
+    <h4 id="fc3478-55e3-77d0-7aae-5606f91e5827_Column_Reordering">Column Reordering</h4>
+    <p>List view provides the ability to reorder columns by dragging and dropping the title of the column to the desired location. The new column order will remain for a user upon subsequent visits to the module until the user's browser cache is cleared. You can reset the column order back to the default view by clicking the Gear icon to the far right of the list view column headers and selecting "Reset default view". Please note that this option only appears if the current list view column order is different from the default column order.
+        <br><img src="http://support.sugarcrm.com/files/4f2f068a-2abe-9d24-e5a8-550305642bc5.png" alt="drag-cols" width="539" height="126"></p>
+    <h4 id="fc3478-55e3-77d0-7aae-5606f91e5827_Column_Resizing">Column Resizing</h4>
+    <p>Users can easily adjust the size of columns in the Processes list view per their viewing preference. Simply place your cursor on the column divider, and when the left-and-right arrow appears, click and drag the column to the desired size. The set column width will be preserved when you navigate away from the page. Sugar will render the preferred column size across sessions until the user removes or resets the relevant browser cookies. You can reset the column width back to the default size by clicking the Gear icon to the far right of the list view column headers and selecting "Reset default widths". Please note that this option only appears if at least one of the column widths in the current list view is different from the default column width.
+        <br><img src="http://support.sugarcrm.com/files/92fc8d0e-9034-8643-30ee-550305f530d9.png" alt="col-width" width="610" height="149"></p>
+    <h4 id="fc3478-55e3-77d0-7aae-5606f91e5827_Column_Sorting">Column Sorting</h4>
+    <p>List view provides the ability to sort all of the current search results by a field column in either ascending or descending order. To sort by a field or switch the sort direction, click the column header noting that the fields which allow sorting will have a pair of arrows.</p>
+    <p><strong>Note:</strong> List views may only be sorted by one column at a time.</p>
+    <h4 id="fc3478-55e3-77d0-7aae-5606f91e5827_Column_Selection">Column Selection</h4>
+    <p>Sugar gives users the ability to personalize the list view by specifying which fields they want displayed. You can click the Column Selection icon to the far right of the list view column headers to see the list of available fields. Click a field name to toggle whether or not it is included as a column on your list view.
+        <br><img src="http://support.sugarcrm.com/files/ccdc1a08-5324-64ba-92cb-5503053e9c10.png" alt="col-select" width="395" height="184"></p>
+    <h4 id="fc3478-55e3-77d0-7aae-5606f91e5827_Preview">Preview</h4>
+    <p>Users can view the progression of a process within the overall flow directly from the Processes list view by clicking the Preview icon to the far right of each process list row. The process' visual design layout will display to the right of the list view providing key information regarding the stages that have already been completed, the current stage of the process, and the stages that have yet to execute. The executed and in-progress stages of the process will be displayed in color while skipped or not-yet-executed stages will be presented in a grayed-out style.
+        <br><img src="http://support.sugarcrm.com/files/502a0f6a-6d38-e3da-fb90-5503056dddba.png" alt="myproc-listview" width="664" height="193"></p>
+    <p><strong>Note: </strong>To view the process design layout in more detail, simply click on the Process Design Preview image to open a full-sized version of the flow in a new browser tab.</p>
+    <p>On the upper right of the intelligence pane, there is a Left and Right arrow button that allows you to scroll through the list view's current search results by previewing the next or previous record. To close the preview, simply click the "X" on the upper right of the intelligence pane.</p>
+    <h4 id="fc3478-55e3-77d0-7aae-5606f91e5827_Record_Actions_Menu">Record Actions Menu</h4>
+    <p>The Record Actions menu to the right of each record's Preview button allows users to execute a running process directly from the list view by clicking "Show Process". This will direct the user to a landing page where they will be instructed to approve, reject, or resume the current process. For more information about executing processes, please see the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Executing_Processes">Executing Processes</a> section of this documentation.
+        <br><img src="http://support.sugarcrm.com/files/41d7bb9c-40a9-1fb5-ad3b-5503055cf220.png" alt="list-actions" width="504" height="130"></p>
+    <h4 id="fc3478-55e3-77d0-7aae-5606f91e5827_More_Processes">More Processes</h4>
+    <p>The list view loads an initial number of records meeting the current search criteria with the option to show additional results at the user's request. By default, Sugar displays 20 records per list view results set. To load the next set of list view results, simply click on the words "More Processes..." at the bottom of the list view. Please note that administrators can change the number of records displayed via Admin &gt; System Settings. For more information on changing the number of displayed records, please refer to the System documentation in the Administration guide.</p>
+    <h4 id="fc3478-55e3-77d0-7aae-5606f91e5827_Right_Hand_Side_Drawer">Right Hand Side Drawer</h4>
+    <p>On the upper right of the Processes list view there is a double arrow icon which allows users to expand the list view to the full screen width. The intelligence pane to the right of the list view will be hidden when the list view is expanded. To reduce the list view's width and reveal the intelligence pane, simply click the double arrow icon again.</p>
+    <h2 id="fc3478-55e3-77d0-7aae-5606f91e5827_Executing_Processes">Executing Processes</h2>
+    <p>When a running process requires action from a user, that user will see the process in their Processes dashlet and Processes module list view. These moments within a flow need a user to decide if a circumstance is approved or rejected, or review and/or edit a Sugar record. This decision is formally indicated by executing the process. The following sections explain how to execute the different process activities in Sugar.</p>
+    <h3 id="fc3478-55e3-77d0-7aae-5606f91e5827_Executing_Approval_Processes">Executing Approval Processes</h3>
+    <p>An approval process is a moment within a flow where a user must decide if a circumstance is approved or rejected. When an approval process requires action from a user, that user will see the process in their Processes dashlet and Processes module list view. The user will formally indicate their approval by executing the process.</p>
+    <p>The most common user activity during a process is an approval. For example, an organization may require a different manager's approval depending on the discount total. The following image portrays how a Sugar process will automate this approval:
+        <br><img src="http://support.sugarcrm.com/files/ae01a670-32c8-a2ca-004b-550305591c53.png" alt="approval-process" width="429" height="255"></p>
+    <p>All steps in the above process are automated except for the two approval steps: "Needs Jim Approval" and "Needs Chris Approval". When the automated process reaches either of these steps, Jim or Chris will see a line item in their Processes dashlet and list view.</p>
+    <p>Follow these steps to execute an approval process:</p>
+    <ol>
+        <li>Click on the hyperlinked process name in your Processes dashlet. Please note that the dashlet will not differentiate between Approval processes and Routed processes. The process type will become apparent on the next screen.
+            <br><img src="http://support.sugarcrm.com/files/5c81aba3-cbba-325f-6388-55030571e62f.png" alt="execute-process-dash" width="289" height="80">
+            <br>Alternatively, navigate to Processes list view and choose "Show Process" from the actions menu of the record:
+            <br><img src="http://support.sugarcrm.com/files/28139657-cce4-64a7-c010-550305c3c890.png" alt="show-pro" width="537" height="166"></li>
+        <li>The process landing page is the record view of the affected Sugar record.
+            <br><strong>Note:</strong> Backwards compatibility modules will display the record's edit view.
+            <br><img src="http://support.sugarcrm.com/files/d2a7e65b-2e2e-a6b8-db67-550305b5e8b4.png" alt="approval-view" width="474" height="243">
+            <br>You will also see the following process-specific display items:
+            <br>
+            <ul>
+                <li><strong>Process Number</strong> : Above the Sugar record, the Process Number appears at the beginning of the process description. This is a unique number assigned to the process you are executing. Process numbers are generated in sequential order as new processes are triggered.</li>
+                <li><strong>Process Definition name</strong> : In the example above, "Case Approval" is the name of the process definition that the administrator created to define the overall flow of this process. For more information about Process Definitions, please see the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Administration_Guide/Process_Author/Process_Definitions/">Process Definitions</a> documentation of the Administration Guide.</li>
+                <li><strong>Process Step</strong> : Immediately following the Process Definition name, the Process Step's name appears. In the example above, "Mgr Approval" represents the name of the step in the overall process that you are currently executing.</li>
+                <li><strong>Due Date</strong> : The last element of the process description is the date and time by which you should execute this process step. If the administrator has not specified a due date, then no date will appear. If the due date occurs in the past, then the date will be preceded by the word "Overdue" in red text.</li>
+                <li><strong>Approve/Reject buttons</strong> : Use one of these two buttons to indicate whether the record's details have been approved or rejected. Clicking on either of these buttons will fully execute the process step and direct you to the previous screen. You will not be able to undo this action and the overall process flow will continue running with the next process step as configured in the overall process definition.</li>
+                <li><strong>Actions Menu</strong> : Click on the triangle to the right of the Edit button for additional process options:</li>
+                <li>
+                    <ul>
+                        <li><strong>History</strong> : Launch a popup window that displays the entire time-stamped history of all transitions, user engagements, and automated occurrences for this process. For more information, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Process_History">Viewing Process History</a> section of this documentation.</li>
+                        <li><strong>Status</strong> : Launch a popup window that displays an image of this process's overall flow. For more information, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Previewing_the_Process_Design">Previewing the Process Design</a> section of this documentation.</li>
+                        <li><strong>Add Notes</strong> : Launch a popup window where you can add notes for people who will engage with the process later or read notes left by others before you. For more information, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Process_Notes">Viewing Process Notes</a> section of this documentation.</li>
+                        <li><strong>Select New Process User</strong> : Choose a new user to execute this process. This option must be enabled by the administrator for the process. For more information, please refer to <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Choosing_a_New_Process_User">Choosing a New Process User</a>.
+                            <br><img src="http://support.sugarcrm.com/files/4828b2d4-c967-8136-c532-5542c711c8b7.png" alt="select-proc-user" width="150" height="159"></li>
+                        <li><strong>Change Assigned To User</strong> : Choose a new Assigned To user for the Sugar record. This option must be enabled by the administrator for the process. For more information, please refer to <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Choosing_a_New_Assigned_To_User">Choosing a New Assigned To User</a>.
+                            <br><img src="http://support.sugarcrm.com/files/60b2fa73-06fc-8e6e-5da3-5542c7f2b8df.png" alt="select-assigned-to" width="148" height="155"></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Expand the record's actions menu to browse available options. You can review the user notes and history as explained in <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Details_About_a_Running_Process">Viewing Details About a Running Process</a>, or if enabled, choose to delegate this process step to another user using "Change Owner" or "Reassign".</li>
+        <li>Optionally, edit the Sugar record if necessary.</li>
+        <li>After reviewing the Sugar record and process details, click on either "Approve" or "Reject" to execute the process. You will be redirected to your dashboard where the executed process will no longer be visible on your Processes dashlet.</li>
+    </ol>
+    <h3 id="fc3478-55e3-77d0-7aae-5606f91e5827_Executing_Routed_Processes">Executing Routed Processes</h3>
+    <p>The other user activity that a process may require is to simply review and/or edit a Sugar record. For example, a high-value quote record may not require approval, but the executive team should be able to review the quote for capacity planning purposes. In this situation, the process definition can be configured to route the process flow through the members of the executive team without requiring a conditional response. The following image portrays how a Sugar process will automate this procedure:
+        <br><img src="http://support.sugarcrm.com/files/ae0cd4bb-9135-0da5-d916-550305d0105b.png" alt="route-process" width="580" height="222"></p>
+    <p>Follow these steps to execute the route step of a process:</p>
+    <ol>
+        <li>Click on the hyperlinked process name in your Processes dashlet. Please note that the dashlet will not differentiate between Approval processes and Routed processes. The process type will become apparent on the next screen.
+            <br><img src="http://support.sugarcrm.com/files/ed0dcbce-9d7f-de33-af17-55030534fbcc.png" alt="click-routed-process" width="400" height="65">
+            <br>Alternatively, navigate to Processes list view and choose "Show Process" from the actions menu of the record:
+            <br><img src="http://support.sugarcrm.com/files/58e19ed3-7f46-bbb5-2bf6-55030544d5cd.png" alt="route-process-list" width="556" height="176"></li>
+        <li>The process landing page is the record view of the affected Sugar record.
+            <br><strong>Note:</strong> Backwards compatibility modules will display the record's edit view.
+            <br><img src="http://support.sugarcrm.com/files/1d997e3a-3bda-4651-52ab-5503053c054c.png" alt="routed-process" width="494" height="216">
+            <br>You will also see the following process-specific display items:
+            <br>
+            <ul>
+                <li><strong>Process Number</strong> : Above the Sugar record, the Process Number appears at the beginning of the process description. This is a unique number assigned to the process you are executing. Process numbers are generated in sequential order as new processes are triggered. If a process flow contains multiple user activities (approvals or reviews) then the process will retain the same process number until the end of the flow.</li>
+                <li><strong>Process Definition name</strong> : In the example above, "High-Value Opportunity" is the name of the process definition that the administrator created to define the overall flow of this process. For more information about process definitions, please see the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Administration_Guide/Process_Author/Process_Definitions/">Process Definitions</a> documentation of the Administration Guide.</li>
+                <li><strong>Process Step</strong> : Immediately following the process definition name, the Process Step name appears. In the example above, "Executive Review" represents the name of the single step in the overall process that you are currently executing.</li>
+                <li><strong>Due Date</strong> : The last element of the process description is the date and time by which you should execute this process step. If the administrator has not specified a due date, then no date will appear. If the due date occurs in the past, then the date will be preceded by the word "Overdue" in red text.</li>
+                <li><strong>Route button</strong> : Click this button to execute the process. For more information, please proceed to the next step.</li>
+                <li><strong>Actions Menu</strong> : Click on the triangle to the right of the Edit button for additional process options:</li>
+                <li>
+                    <ul>
+                        <li><strong>History</strong> : Launch a popup window that displays the entire time-stamped history of all transitions, user engagements, and automated occurrences for this process. For more information, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Process_History">Viewing Process History</a> section of this documentation.</li>
+                        <li><strong>Status</strong> : Launch a popup window that displays an image of this process's overall flow. For more information, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Previewing_the_Process_Design">Previewing the Process Design</a> section of this documentation.</li>
+                        <li><strong>Add Notes</strong> : Launch a popup window where you can add notes for people who will engage with the process later or read notes left by others before you. For more information, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Process_Notes">Viewing Process Notes</a> section of this documentation.</li>
+                        <li><strong>Select New Process User</strong> : Choose a new user to execute this process. This option must be enabled by the administrator for the process. For more information, please refer to <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Choosing_a_New_Process_User">Choosing a New Process User</a>.
+                            <br><img src="http://support.sugarcrm.com/files/4828b2d4-c967-8136-c532-5542c711c8b7.png" alt="select-proc-user" width="150" height="159"></li>
+                        <li><strong>Change Assigned To User</strong> : Choose a new Assigned To user for the Sugar record. This option must be enabled by the administrator for the process. For more information, please refer to <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Choosing_a_New_Assigned_To_User">Choosing a New Assigned To User</a>.
+                            <br><img src="http://support.sugarcrm.com/files/60b2fa73-06fc-8e6e-5da3-5542c7f2b8df.png" alt="select-assigned-to" width="148" height="155"></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>When a flow has been routed to you for review, the only required action is to acknowledge receipt. However, you may first choose to edit the affected record. Review the details of the Sugar record and inspect the process Notes for any critical information that your colleagues may have shared. For information about viewing process Notes, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Process_Notes">Viewing Process Notes</a> section of this documentation. When you have completed making edits and reviewing the record, click "Route" to complete the process.</li>
+        <li>You will be redirected to your dashboard where the executed process will no longer be visible on your Processes dashlet.</li>
+    </ol>
+    <h3 id="fc3478-55e3-77d0-7aae-5606f91e5827_Executing_Self-Service_Processes">Executing Self-Service Processes</h3>
+    <p>Some user-facing processes will not have a designated process owner. Instead, users will be empowered to claim responsibility for them. These processes will appear in the Self Service Processes tab of the Processes dashlet. Self-service processes may require either an approval/rejection response or review of a routed action.</p>
+    <p>Follow these steps to claim and then execute a self-service process:</p>
+    <ol>
+        <li>Click on the hyperlinked process name in the Self Service Processes tab of your Processes dashlet.
+            <br><img src="http://support.sugarcrm.com/files/9303df15-9efa-1b14-ef06-550305bcfca1.png" alt="self-serv-dash2" width="237" height="133">
+            <br>Alternatively, navigate to Processes list view and choose "Show Process" from the actions menu of the record:
+            <br><img src="http://support.sugarcrm.com/files/28139657-cce4-64a7-c010-550305c3c890.png" alt="show-pro" width="537" height="166"></li>
+        <li>The process landing page is the record view of the affected Sugar record (backwards compatibility modules will display the record's edit view).
+            <br><img src="http://support.sugarcrm.com/files/ddfca63d-d9d6-daf0-cb26-550305dc6f6b.png" alt="ss-landing" width="516" height="225">
+            <br>You will also see the following process-specific display items:
+            <br>
+            <ul>
+                <li><strong>Process Number</strong> : Above the Sugar record, the Process Number appears at the beginning of the process description. This is a unique number assigned to the process you are executing. Process numbers are generated in sequential order as new processes are triggered.</li>
+                <li><strong>Process Definition name</strong> : In the example above, "Case Approval" is the name of the Process Definition that the administrator created to define the overall flow of this process. For more information about Process Definitions, please see the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Administration_Guide/Process_Author/Process_Definitions/">Process Definitions</a> documentation of the Administration Guide.</li>
+                <li><strong>Process Step</strong> : Immediately following the Process Definition name, the Process Step's name appears. In the example above, "Mgr Approval" represents the name of the step in the overall process that you are currently claiming.</li>
+                <li><strong>Due Date</strong> : The last element of the process description is the date and time by which a user should execute this process step. If the administrator has not specified a due date, then no date will appear. If the due date occurs in the past, then the date will be preceded by the word "Overdue" in red text.</li>
+                <li><strong>Claim button</strong> : Click this button to claim the process. This will remove the process from the Self Service pool. For more information, please proceed to the next step.</li>
+                <li><strong>Actions Menu</strong> : Click on the triangle to the right of the Edit button for additional process options:</li>
+                <li>
+                    <ul>
+                        <li><strong>History</strong> : Launch a popup window that displays the entire time-stamped history of all transitions, user engagements, and automated occurrences for this process. For more information, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Process_History">Viewing Process History</a> section of this documentation.</li>
+                        <li><strong>Status</strong> : Launch a popup window that displays an image of this process's overall flow. For more information, please refer to the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Previewing_the_Process_Design">Previewing the Process Design</a> section of this documentation.</li>
+                        <li><strong>Select New Process User</strong> : Choose a new user to execute this process. This option must be enabled by the administrator for the process. For more information, please refer to <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Choosing_a_New_Process_User">Choosing a New Process User</a>.
+                            <br><img src="http://support.sugarcrm.com/files/4828b2d4-c967-8136-c532-5542c711c8b7.png" alt="select-proc-user" width="150" height="159"></li>
+                        <li><strong>Change Assigned To User</strong> : Choose a new Assigned To user for the Sugar record. This option must be enabled by the administrator for the process. For more information, please refer to <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Choosing_a_New_Assigned_To_User">Choosing a New Assigned To User</a>.
+                            <br><img src="http://support.sugarcrm.com/files/60b2fa73-06fc-8e6e-5da3-5542c7f2b8df.png" alt="select-assigned-to" width="148" height="155"></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Click on "Claim" to indicate your intention to execute this process and remove it from view of other team members. The process can be immediately executed after claiming it, or you can navigate away and find the process later in the My Processes tab of your Processes dashlet.</li>
+        <li>After clicking the Claim button, the page will reload and expose the Approve/Reject or Route buttons, depending on what type of process activity has been configured.</li>
+        <li>You can now execute the process as explained in either the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Executing_Approval_Processes">Executing Approval Processes</a> or <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Executing_Routed_Processes">Executing Routed Processes</a> section.</li>
+    </ol>
+    <h2 id="fc3478-55e3-77d0-7aae-5606f91e5827_Choosing_a_New_Process_User">Choosing a New Process User</h2>
+    <p>When a process is routed to you for review or approval, it may be possible to designate a new user to execute the process. The administrator can enable or disable this option on each process definition, so it may be possible to do this for one process but not another. If the option is enabled, "Select New Process User" will be available in the actions menu on the process execution screen:
+        <br><img src="http://support.sugarcrm.com/files/77a308b6-d91c-5ce2-65af-5542c9f611cd.png" alt="select-proc-user-200" width="164" height="173"></p>
+    <p>Follow these steps to reassign a process:</p>
+    <ol>
+        <li>Click on the hyperlinked process name in your Processes dashlet. Please note that the dashlet will not differentiate between Approval processes and Routed processes. The process type will become apparent on the next screen.
+            <br><img src="http://support.sugarcrm.com/files/5c81aba3-cbba-325f-6388-55030571e62f.png" alt="execute-process-dash" width="289" height="80">
+            <br>Alternatively, navigate to Processes list view and choose "Show Process" from the actions menu of the record:
+            <br><img src="http://support.sugarcrm.com/files/28139657-cce4-64a7-c010-550305c3c890.png" alt="show-pro" width="537" height="166"></li>
+        <li>The process landing page is the record view of the affected Sugar record.
+            <br><strong>Note:</strong> Backwards compatibility modules will display the record's edit view.</li>
+        <li>Click on the triangle next to the Edit button to reveal the actions menu. Click on "Select New Process User".
+            <br><img src="http://support.sugarcrm.com/files/77a308b6-d91c-5ce2-65af-5542c9f611cd.png" alt="select-proc-user-200" width="150" height="159">
+            <br><strong>Note: </strong>If "Select New Process User" is not displayed, then the administrator has not enabled reassignments for this type of process. Please contact the administrator and ask them to reassign the process for you.</li>
+        <li>The "Select New Process User" window will appear.
+            <br><img src="http://support.sugarcrm.com/files/eb532391-54fa-5d28-e134-5542cb5ecc9c.png" alt="new-proc-dialog" width="368" height="197">
+            <br>There are three options:</li>
+    </ol>
+    <ul>
+        <li><strong>User</strong> : Choose a user to complete this step of the process. The administrator will have specified a Sugar team from which you may choose any member. No other users will be displayed in the User dropdown.</li>
+        <li><strong>Type</strong> : Choose a reassignment method:</li>
+        <li>
+            <ul>
+                <li><strong>Round Trip</strong> : Choose "Round Trip" to make the process route back to you when the new user has completed this step.</li>
+                <li><strong>One Way</strong> : Choose "One-Way" to direct the process to a new user, and then have it continue to its next step without routing back to you.</li>
+            </ul>
+        </li>
+        <li><strong>Note </strong>: As a best practice, add a note explaining why you are choosing a new user to execute this process. The new user will see your note when she clicks on "View Notes".</li>
+        <li>Click on "Save" to be redirected to your dashboard where the reassigned process will no longer be visible on your Processes dashlet.</li>
+    </ul>
+    <h2 id="fc3478-55e3-77d0-7aae-5606f91e5827_Choosing_a_New_Assigned_To_User">Choosing a New Assigned To User</h2>
+    <p>When a process is routed to you for review or approval, it may be possible to choose a new assigned user for the affected Sugar record without affecting the flow of the process. The administrator can enable or disable this option on each process definition, so it may be possible to reassign the Sugar record for one process but not another. If the option is enabled, "Change Assigned To User" will be available in the actions menu on the process execution screen:
+        <br><img src="http://support.sugarcrm.com/files/e2bfd2c9-128a-be4c-e056-5542c9083c46.png" alt="select-assigned-to-200" width="150" height="157"></p>
+    <p>Follow these steps to designate a new assigned user:</p>
+    <ol>
+        <li>Click on the hyperlinked process name in your Processes dashlet. Please note that the dashlet will not differentiate between Approval processes and Routed processes. The process type will become apparent on the next screen.
+            <br><img src="http://support.sugarcrm.com/files/5c81aba3-cbba-325f-6388-55030571e62f.png" alt="execute-process-dash" width="289" height="80">
+            <br>Alternatively, navigate to Processes list view and choose "Show Process" from the actions menu of the record:
+            <br><img src="http://support.sugarcrm.com/files/28139657-cce4-64a7-c010-550305c3c890.png" alt="show-pro" width="537" height="166"></li>
+        <li>The process landing page is the record view of the affected Sugar record.
+            <br><strong>Note:</strong> Backwards compatibility modules will display the record's edit view.</li>
+        <li>Click on the triangle next to the Edit button to reveal the actions menu. Click on "Change Assigned To User".
+            <br><img src="http://support.sugarcrm.com/files/e2bfd2c9-128a-be4c-e056-5542c9083c46.png" alt="select-assigned-to-200" width="145" height="152">
+            <br><strong>Note: </strong>If "Change Owner" is not displayed, then the administrator has not enabled reassignments for this type of process. Please contact the administrator and ask them to reassign it for you.</li>
+        <li>The "Change Assigned To User" window will appear:
+            <br><img src="http://support.sugarcrm.com/files/9bd313b2-e4c0-85e3-39d2-5542d9736482.png" alt="reassign-dialog" width="319" height="158">
+            <br>There are two options:</li>
+    </ol>
+    <ul>
+        <li><strong>User</strong> : The user chosen here will become the "Assigned To" user of the related Sugar record. The administrator will have specified a Sugar team from which you may choose any member. No other users will be displayed in the User dropdown.</li>
+        <li><strong>Note</strong> : As a best practice, add a note explaining why you are choosing a new assigned user. The next process user will see your note when she clicks on "View Notes".</li>
+        <li>Click on "Save" to update the Sugar record. The page will reload to reflect the change. You can now execute the process as explained in either the <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Executing_Approval_Processes">Executing Approval Processes</a> or <a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Executing_Routed_Processes">Executing Routed Processes</a> section.</li>
+    </ul>
+    <h2 id="fc3478-55e3-77d0-7aae-5606f91e5827_Viewing_Details_About_a_Running_Process">Viewing Details About a Running Process</h2>
+    <p>When executing a running process, there are three options available that will help you gain valuable insight into the past, present, and future state of the process: Show History, Show Notes, Show Status. These options are accessible via the actions menu on the process execution screen. Click on the triangle to the right of the edit button to expand the actions menu:
+        <br><img src="http://support.sugarcrm.com/files/40dffa0b-ce40-c542-422f-550305058e15.png" alt="sidecar-actions" width="401" height="127">
+        <br>In backwards-compatibility modules, these options are represented by icons in the upper right area of the process execution screen:
+        <br><img src="http://support.sugarcrm.com/files/64e4e215-6f6a-aac2-6624-5503059c7d7c.png" alt="insight-icons" width="550" height="128"></p>
+    <table border="1" cellspacing="0" cellpadding="4">
+        <tbody>
+            <tr>
+                <td><strong>Action</strong></td>
+                <td><strong>BWC Icon</strong></td>
+                <td><strong>Description</strong></td>
+            </tr>
+            <tr>
+                <td><a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Process_History">Show History</a></td>
+                <td><img src="http://support.sugarcrm.com/files/31e92ecf-bc33-683f-7a52-5503057830d0.png" alt="icon-history" width="28" height="23"></td>
+                <td>View the entire time-stamped history of all process transitions, user engagements, and automated occurrences that were executed by the Process Author engine.</td>
+            </tr>
+            <tr>
+                <td><a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Viewing_Process_Notes">Show Notes</a></td>
+                <td><img src="http://support.sugarcrm.com/files/c86d4f9c-c6ac-de96-c507-550305980ba3.png" alt="icon-notes" width="25" height="23"></td>
+                <td>Read messages from users who have already engaged in the process, and send messages to users who will engage in the process later.</td>
+            </tr>
+            <tr>
+                <td><a href="http://support.sugarcrm.com/Documentation/Sugar_Versions/7.6/Ent/Application_Guide/Processes/#Previewing_the_Process_Design">Show Status</a></td>
+                <td><img src="http://support.sugarcrm.com/files/78390ee0-8677-11ea-37c8-550305321790.png" alt="icon-status" width="26" height="24"></td>
+                <td>Reveal an image of the process' visual design layout in a pop-up window. The image will reveal key information regarding the stages that have already been completed, the current stage of the process, and the stages that have yet to execute.</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h3 id="fc3478-55e3-77d0-7aae-5606f91e5827_Viewing_Process_History">Viewing Process History</h3>
+    <p>To review the entire time-stamped history of all transitions, user engagements, and automated occurrences for a particular process, follow these steps:</p>
+    <ol>
+        <li>From the Processes dashlet, click on the hyperlinked process name to view the process execution screen.</li>
+        <li>Click on the triangle next to the Edit button to reveal the Actions menu, and then click "Show History".
+            <br><strong>Note: </strong>In backwards compatibility modules, click on the History <img src="http://support.sugarcrm.com/files/31e92ecf-bc33-683f-7a52-5503057830d0.png" alt="icon-history" width="28" height="23"> icon in the corner of the screen.</li>
+        <li>A popup window will appear over the current page outlining the transition history of the current process.
+            <br><img src="http://support.sugarcrm.com/files/85be686d-7519-c8cb-c817-556dca401b63.png" alt="history-currentstatus" width="500" height="127">
+            <br>
+            <ul>
+                <li>Profile image and name of the process user who executed the transition. The process trigger will be credited to the administrative user who designed the process, while automated events will be executed by the Process Author engine.
+                    <br><img src="http://support.sugarcrm.com/files/d1805687-f1f9-b66d-fd15-556dcaaae63d.png" alt="process-names" width="300" height="139"></li>
+                <li>Explanation of the transition that occurred:
+                    <br><img src="http://support.sugarcrm.com/files/b86e2657-721f-213d-5a9e-556dcadff192.png" alt="action-performed" width="500" height="40"></li>
+                <li>Transition status indicator:
+                    <br><img src="http://support.sugarcrm.com/files/c567e99c-8d9a-5914-1e2d-556dca99cecf.png" alt="check-nocheck" width="500" height="82"></li>
+                <li>
+                    <ul>
+                        <li>Checkmark <span>✔</span> : The action has been executed.</li>
+                        <li>No Checkmark : The action has not yet been executed.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Click on the X in the corner of the window to return to the process execution screen.</li>
+    </ol>
+    <h3 id="fc3478-55e3-77d0-7aae-5606f91e5827_Viewing_Process_Notes">Viewing Process Notes</h3>
+    <p>A process user who is engaged in a process activity can add notes for people who will engage with the process later in its flow. When a different user engages in that same process later, he can see the earlier user notes and choose to add his own. Users who executed process activities at the beginning will not see the notes added by subsequent process users unless the process is routed back to them for review or approval later.</p>
+    <p><strong>Note:</strong> Admin users can see all notes and add notes to any running process at any time from the Process Management page.</p>
+    <p>To create a note and view process notes from other users, follow these steps:</p>
+    <ol>
+        <li>From the Processes dashlet, click on the hyperlinked process name to view the process execution screen.</li>
+        <li>Click on the triangle next to the Edit button to reveal the Actions menu, and then click "Show Notes".
+            <br><strong>Note: </strong>In backwards compatibility modules, click on the Notes <img src="http://support.sugarcrm.com/files/c86d4f9c-c6ac-de96-c507-550305980ba3.png" alt="icon-notes" width="25" height="23"> icon in the corner of the screen.</li>
+        <li>A popup window will appear over the current page that displays time-stamped notes from earlier users of the current process.</li>
+        <li>At the top of the window, there is also a composition area where you can add your own notes. Simply type a message in the empty field and then click on "Add Note" to add it to the Notes window.
+            <br><img src="http://support.sugarcrm.com/files/770c8160-6473-a14a-8191-550305895ac3.png" alt="show-notes" width="641" height="155"></li>
+        <li>Click on the X in the corner of the window to return to the process execution screen.</li>
+    </ol>
+    <p>Every person that may be involved in a process will not see the process throughout its entire flow. Regular users can only see the process in list view when they have a record to approve, reject, or review. Therefore, only one regular user (non-admin) can see the notes at any given time. In other words, the notes will only be seen by users who approve/reject/review the process AFTER the note is added.</p>
+    <h3 id="fc3478-55e3-77d0-7aae-5606f91e5827_Previewing_the_Process_Design">Previewing the Process Design</h3>
+    <p>Users can view the progression of a process within the overall flow directly from the process' execution page. Click on the triangle next to the Edit button to reveal the Actions menu, and then click "Show Process".</p>
+    <p><strong>Note: </strong>In backwards compatibility modules, click the Status <img src="http://support.sugarcrm.com/files/78390ee0-8677-11ea-37c8-550305321790.png" alt="icon-status" width="26" height="24"> icon in the upper right corner.</p>
+    <p>The process' visual design layout will open in a pop-up window, providing key information regarding the stages that have already been completed, the current stage of the process, and the stages that have yet to execute. The executed and in-progress stages of the process will be displayed in color, while bypassed or not-yet-executed stages will be presented in a grayed out style.
+        <br><img src="http://support.sugarcrm.com/files/24ce080c-597c-1da7-cba7-550305d97563.png" alt="show-status" width="496" height="245"></p>
+    <h2 id="fc3478-55e3-77d0-7aae-5606f91e5827_Terminated_vs_Cancelled_Processes">Terminated vs. Cancelled Processes</h2>
+    <p>The Process Author automatically terminates a process when the record related to the process' Start event is deleted. The associated process will be removed from the Processes dashlet and the process record will display "Terminated" in the Status column of the administrator's Process Management list view.</p>
+    <p>Cancelled processes, on the other hand, have been intentionally stopped by the administrator. The associated process will be removed from the Processes dashlet and the process record will display "Cancelled" in the Status column of the administrator's Process Management list view.</p>
+    <p></p>
+</div>
