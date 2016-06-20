@@ -30,7 +30,7 @@ var config = {
     ],
     'patterns': [ //str.replace(re, "$2, $1");
         //{'search': /(?!<a[^>]*>)(Sugar(CRM)?)(?![^<]*<\/a>)/g, 'replace': 'VodafoneCRM'},
-        {'search': /(?![^<]*>)Sugar(CRM)?/g, 'replace': 'VodafoneCRM'},
+        //{'search': /(?![^<]*>)Sugar(CRM)?/g, 'replace': 'VodafoneCRM'},
         {'search': /href="#([^A-Z"]*)/g, 'replace': 'href=\"#'}, //remove guids from inline anchor tags
         {'search': /id="([^A-Z"]*)/g, 'replace': 'id=\"'}, //remove guids from inline anchor ids
         //{'search': /<[^\/>][^>]*><\/[^>]+>/g, 'replace': ''},
