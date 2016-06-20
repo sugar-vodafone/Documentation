@@ -52,7 +52,7 @@ $app->post('/api/selections', function (Request $request) use ($app) {
     );
 
     try {
-        $selection_id = $app['db']->fetchColumn('SELECT id, lang, file, serialized_range, body_text, body_html FROM selections WHERE (serialized_range = ? AND lang = ? AND file = ?) OR body_text = ?', array($params['serialized_range'], $params['lang'], $params['file'], $params['body_text']), 0);
+        $selection_id = $app['db']->fetchColumn('SELECT id, lang, file, serialized_range, body_text, body_html FROM selections WHERE (serialized_range = ? AND lang = ? AND file = ?)', array($params['serialized_range'], $params['lang'], $params['file']), 0);
     //    var_dump($selection_id);
 
         if($selection_id) {
