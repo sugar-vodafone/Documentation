@@ -57,8 +57,8 @@ $app->post('/api/selections', function (Request $request) use ($app) {
 
         if($selection_id) {
             $app['db']->update('selections', array('deleted' => 0), array('id' => $selection_id));
-            $params['status'] = 'Added';
-            $statusCode = 201;
+            $params['status'] = 'Updated';
+            $statusCode = 200;
         }
         else {
             $app['db']->insert('selections', $params);
